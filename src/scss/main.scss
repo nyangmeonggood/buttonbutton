@@ -1,0 +1,25 @@
+@font-face {
+  font-family: "paybooc-Medium";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/paybooc-Medium.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+html,
+body {
+  font-family: "paybooc-Medium", "Raleway", sans-serif;
+  font-weight: bold;
+}
+
+.textInput {
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 40px;
+  padding: 6px;
+  border: none;
+  border-bottom: 1px solid #dbdbdb;
+  outline: none;
+  text-align: center;
+  box-sizing: border-box;
+}
