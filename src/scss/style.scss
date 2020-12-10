@@ -1,3 +1,48 @@
+@mixin mediaSize {
+  width: 180px;
+
+  @media screen and (max-width: 900px) {
+    width: 130px;
+  }
+}
+
+.PoppingCircle {
+  .text {
+    position: relative;
+  }
+
+  div {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: -1;
+    transform: translate(-50%, -50%);
+    transition: transform 1s cubic-bezier(0.12, 1.21, 0.57, -0.68);
+    width: 160px;
+    height: 160px;
+    @media screen and (max-width: 900px) {
+      width: 140px;
+      height: 140px;
+    }
+    background-color: #ac3;
+    border-radius: 50%;
+  }
+
+  &:active {
+    div {
+      transform: translate(-50%, -50%) scale(0.8);
+    }
+  }
+}
+
+.BlurText {
+  transition: filter 0.5s ease-in-out;
+
+  &:hover {
+    filter: blur(20px);
+  }
+}
+
 .Clicker3D {
   background-color: #68efad;
   padding: 10px 60px;
@@ -98,9 +143,9 @@
 
 .SkewBG {
   width: 180px;
-  border: 2px solid #f7f7f7;
+  border: 2px solid #dbdbdb;
   padding: 12px;
-  color: #f7f7f7;
+  color: #dbdbdb;
   overflow: hidden;
   text-align: center;
   transition: 0.5s;
@@ -148,5 +193,518 @@
       0 0 30px rgba(241, 196, 15, 0.7);
     outline-color: rgba(241, 196, 15, 0);
     outline-offset: 10px;
+  }
+}
+
+.MoveBehind {
+  width: 180px;
+
+  @media screen and (max-width: 900px) {
+    width: 130px;
+  }
+  padding: 40px;
+  box-sizing: border-box;
+  overflow: hidden;
+  ~ span {
+    color: white;
+  }
+
+  &:hover {
+    .wave {
+      &:before,
+      &:after {
+        top: 250%;
+      }
+    }
+  }
+
+  .wave {
+    width: 100%;
+    height: 100%;
+    background-color: #444857;
+    box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.5);
+    position: absolute;
+    left: 0;
+    top: 0;
+    transition: 0.4s;
+
+    &::before,
+    &::after {
+      width: 200%;
+      height: 200%;
+      content: "";
+      position: absolute;
+      top: 150%;
+      left: 50%;
+      transform: translateX(-50%);
+      transition: 0.5s ease-out;
+    }
+
+    &::before {
+      border-radius: 45%;
+      background-color: rgba(20, 20, 20, 1);
+      animation: wave 5s linear infinite;
+    }
+
+    &::after {
+      border-radius: 40%;
+      background-color: rgba(20, 20, 20, 0.5);
+      animation: wave 10s linear infinite;
+    }
+  }
+
+  @keyframes wave {
+    0% {
+      transform: translate(-50%) rotate(0deg);
+    }
+
+    100% {
+      transform: translate(-50%) rotate(360deg);
+    }
+  }
+}
+
+.CircleArrow {
+  position: relative;
+  width: 200px;
+  height: 60px;
+  display: flex;
+  background: rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+  border-radius: 60px;
+  color: white;
+
+  @media screen and (max-width: 900px) {
+    width: 130px;
+    height: 40px;
+    font-size: 0.7em;
+  }
+
+  span {
+    position: relative;
+    z-index: 2;
+
+    &.add {
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  .icon {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -40%);
+    margin-left: 4px;
+    transition: 500ms ease;
+    transition-property: left;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: #fc6100;
+    border-radius: 60px;
+    z-index: 1;
+    transition: transform 500ms ease;
+  }
+
+  &:hover {
+    &::after {
+      transform: translateX(calc(100% - 60px));
+      @media screen and (max-width: 900px) {
+        transform: translateX(calc(100% - 40px));
+      }
+    }
+
+    .icon {
+      position: fixed;
+      left: calc(100% - 32px);
+      transform: translate(-50%, -15%);
+      @media screen and (max-width: 900px) {
+        left: calc(100% - 24px);
+      }
+    }
+  }
+}
+
+.Layered {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  text-align: center;
+  line-height: 110px;
+  background-color: #f5b0d6;
+  transition: 0.2s;
+  transform: translate(0, 0) rotateY(0) skewY(0);
+
+  @media screen and (max-width: 900px) {
+    transform: translate(0, 0) rotateY(0) skewY(0) scale(0.8);
+  }
+
+  &:hover {
+    transform: translate(-50px, -55px) rotateY(-15deg) skewY(-10deg);
+
+    @media screen and (max-width: 900px) {
+      transform: translate(-70px, -60px) rotateY(-15deg) skewY(-10deg)
+        scale(0.8);
+    }
+
+    span {
+      &:nth-child(1) {
+        transform: translate(8px, 4px);
+        background-color: #e08dbb;
+      }
+      &:nth-child(2) {
+        transform: translate(16px, 8px);
+        background-color: #bd6093;
+      }
+      &:nth-child(3) {
+        transform: translate(24px, 12px);
+        background-color: #94386a;
+      }
+      &:last-child {
+        transform: translate(30px, 16px);
+        transition-delay: 0.2s;
+
+        &::before {
+          width: 100%;
+          transition-delay: 0.4s;
+        }
+        &::after {
+          top: 0;
+          height: 100%;
+          transition-delay: 0.6s;
+        }
+      }
+    }
+  }
+
+  span {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: 0.2s;
+    transform: translate(0, 0);
+
+    &:last-child {
+      transform: translate(-4px, -4px);
+      transition: 0.2s;
+      z-index: 0;
+      opacity: 0.5;
+      border-top: 1px solid black;
+      border-left: 1px solid black;
+
+      &::before,
+      &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        transition: 0.2s;
+      }
+
+      &::before {
+        width: 0;
+        height: 100%;
+        border-bottom: 1px solid black;
+      }
+      &::after {
+        width: 100%;
+        height: 0;
+        top: 100%;
+        border-right: 1px solid black;
+      }
+    }
+  }
+}
+
+.Bubble {
+  @include mediaSize;
+
+  height: 60px;
+  border: 2px solid #111;
+  border-radius: 24px;
+
+  &:hover {
+    span {
+      &:nth-of-type(1) {
+        width: 20px;
+        height: 20px;
+        top: -40%;
+        left: 105%;
+
+        @media screen and (max-width: 900px) {
+          left: 92%;
+        }
+      }
+      &:nth-of-type(2) {
+        width: 10px;
+        height: 10px;
+        top: 80%;
+        left: -10%;
+      }
+      &:nth-of-type(3) {
+        width: 25px;
+        height: 25px;
+        top: 105%;
+        left: 107%;
+
+        @media screen and (max-width: 900px) {
+          left: 89%;
+        }
+      }
+    }
+  }
+
+  div {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    border-radius: 24px;
+    background-color: white;
+  }
+
+  span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 10px;
+    height: 10px;
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 50%;
+    transition: 0.5s;
+
+    &:nth-of-type(2) {
+      transition-delay: 0.03s;
+    }
+    &:nth-of-type(3) {
+      transition-delay: 0.05s;
+    }
+  }
+}
+
+.WaveBrick {
+  position: relative;
+  width: 180px;
+  height: 60px;
+
+  @media screen and (max-width: 900px) {
+    transform: translate(-50%, -50%) scale(0.75) !important;
+  }
+
+  &:hover {
+    div {
+      height: 120%;
+      transition: 0.4s;
+    }
+    span {
+      opacity: 0.7;
+    }
+  }
+
+  span {
+    position: relative;
+    z-index: 10;
+    color: #94386a;
+    transition: 0.4s;
+  }
+  div {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 22.5px;
+    height: 100%;
+    background-color: #fc2;
+    transition: 0.7s;
+
+    &:nth-of-type(1),
+    &:nth-of-type(8) {
+      transition-delay: 0.3s;
+    }
+    &:nth-of-type(2),
+    &:nth-of-type(7) {
+      transition-delay: 0.2s;
+    }
+    &:nth-of-type(3),
+    &:nth-of-type(6) {
+      transition-delay: 0.1s;
+    }
+    &:nth-of-type(4),
+    &:nth-of-type(5) {
+      transition-delay: 0s;
+    }
+  }
+}
+
+.Ripple {
+  position: relative;
+  width: 180px;
+  height: 60px;
+  filter: url("#Ripple");
+
+  @media screen and (max-width: 900px) {
+    transform: translate(-50%, -50%) scale(0.6) !important;
+  }
+
+  &:hover {
+    div {
+      height: 120%;
+      transition: 0.4s cubic-bezier(0, 2, 0.7, 2);
+    }
+    span {
+      opacity: 0.7;
+    }
+  }
+
+  span {
+    position: relative;
+    z-index: 10;
+    color: #2d3436;
+    transition: 0.4s;
+  }
+  div {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 22.5px;
+    height: 100%;
+    background-color: #81ecec;
+    transition: 0.7s cubic-bezier(0.1, 1, 0.2, 4);
+
+    &:nth-of-type(1),
+    &:nth-of-type(8) {
+      transition-delay: 0.3s;
+    }
+    &:nth-of-type(2),
+    &:nth-of-type(7) {
+      transition-delay: 0.2s;
+    }
+    &:nth-of-type(3),
+    &:nth-of-type(6) {
+      transition-delay: 0.1s;
+    }
+    &:nth-of-type(4),
+    &:nth-of-type(5) {
+      transition-delay: 0s;
+    }
+  }
+}
+
+.VerticalBrick {
+  @include mediaSize;
+
+  height: 50px;
+  border: 6px double #111;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  span {
+    position: absolute;
+    z-index: 10;
+    transition: 0.7s;
+  }
+
+  &:hover {
+    span {
+      color: white;
+    }
+    ul > li {
+      left: 0 !important;
+    }
+  }
+
+  ul {
+    position: absolute;
+    display: flex;
+    flex-wrap: wrap;
+    height: 50px;
+    width: 80%;
+
+    &.side0 {
+      left: 0;
+      li {
+        left: -105%;
+      }
+    }
+    &.side1 {
+      display: flex;
+      flex-direction: column-reverse;
+      left: 20%;
+
+      li {
+        left: 105%;
+      }
+    }
+    li {
+      position: relative;
+      width: 100%;
+      height: 10%;
+      background-color: #111;
+      transition: 0.7s;
+    }
+  }
+}
+
+.Neon {
+  @include mediaSize;
+
+  padding: 20px 0;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: 0.5s ease-in-out;
+  transition-property: box-shadow, background-color;
+
+  @media screen and (max-width: 900px) {
+    transform: translate(-50%, -50%) scale(0.8) !important;
+  }
+
+  &:hover {
+    background-color: #45e924;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    box-shadow: 0px 0px 5px #45e924, 0px 0px 25px #45e924, 0px 0px 50px #45e924,
+      0px 0px 100px #45e924;
+  }
+}
+
+.MovingBot {
+  @include mediaSize;
+
+  position: relative;
+  padding: 20px 0;
+  overflow: hidden;
+  text-align: center;
+
+  &::after {
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(to right, transparent, #fe85fe);
+  }
+
+  &:hover {
+    &::after {
+      left: 100%;
+      transition: left 1s;
+    }
   }
 }

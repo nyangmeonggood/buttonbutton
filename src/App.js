@@ -8,7 +8,7 @@ import { btnContainer } from "./btnContainer";
 import Buttons from "./Buttons";
 
 function App() {
-  const [buttonText, setButtonText] = useState("Button");
+  const [buttonText, setButtonText] = useState("Write Here!");
   const [isLoaded, setIsLoaded] = useState(false);
   const inputRef = useRef(null);
 
@@ -19,16 +19,17 @@ function App() {
   const loadedClick = () => {
     setIsLoaded(true);
   };
+  const empty = () => {
+    setButtonText("");
+  };
 
-  // useEffect(() => {
-  //   inputRef.current.focus();
-  // });
-
-  const randomMainTitle = btnContainer.filter(
-    (item) => item.skill !== "SVG Filter"
-  );
+  const randomMainTitle = btnContainer.filter((item) => item.title !== false);
   const randomClass =
     randomMainTitle[Math.floor(Math.random() * randomMainTitle.length)];
+
+  useEffect(() => {
+    if (isLoaded) window.addEventListener("scroll", scrollEvent);
+  });
 
   return (
     <>
@@ -57,14 +58,23 @@ function App() {
           type="text"
           value={buttonText}
           onChange={onChange}
-          maxLength="6"
+          maxLength="7"
           ref={inputRef}
+          onFocus={empty}
         ></input>
       )}
       {isLoaded && <Buttons text={buttonText} />}
     </>
   );
 }
+
+const scrollEvent = () => {
+  if (window.scrollY > 100) {
+    document.querySelector("#root").classList.add("fixed");
+  } else {
+    document.querySelector("#root").classList.remove("fixed");
+  }
+};
 
 const Header = styled.header`
   position: relative;
@@ -81,19 +91,20 @@ const Header = styled.header`
   }
 `;
 
-const TitleGreet = styled.div`
-  position: absolute;
-  top: 100px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: block;
-`;
+// const TitleGreet = styled.div`
+//   position: absolute;
+//   top: 100px;
+//   left: 50%;
+//   transform: translateX(-50%);
+//   display: block;
+// `;
 
 const MainButton = styled.button`
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) scale(1.5);
+  outline: none;
 `;
 
 const MainTextSpan = styled.span`

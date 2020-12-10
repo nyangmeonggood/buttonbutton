@@ -2,13 +2,18 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 import { btnContainer } from "./btnContainer.js";
 import { createElem } from "./createElem.js";
-import "./scss/style.scss";
 import SVGfilter from "./SVGfilter.js";
+import "./scss/style.scss";
+import { setText } from "./setText.js";
 
 export default function Buttons({ text }) {
   useEffect(() => {
-    createElem();
-  });
+    createElem(text);
+  }, []);
+
+  useEffect(() => {
+    setText(text);
+  }, [text]);
 
   return (
     <Container>
@@ -20,8 +25,14 @@ export default function Buttons({ text }) {
                 <Button className={item.name.replace(/ /gi, "")}>{text}</Button>
               ) : (
                 <>
-                  <Button className={item.name.replace(/ /gi, "")}></Button>
-                  <TextSpan>{text}</TextSpan>
+                  <Button className={item.name.replace(/ /gi, "")}>
+                    {!item.posCenter && (
+                      <>
+                        <span></span>
+                      </>
+                    )}
+                  </Button>
+                  {item.posCenter && <TextSpan>{text}</TextSpan>}
                 </>
               )}
             </ButtonArea>
@@ -69,6 +80,10 @@ const ButtonArea = styled.div`
   position: relative;
   width: 100%;
   height: 200px;
+
+  @media screen and (max-width: 900px) {
+    height: 190px;
+  }
 `;
 
 const Button = styled.button`
@@ -76,6 +91,7 @@ const Button = styled.button`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  text-align: center;
   font-weight: bold;
 `;
 
@@ -86,6 +102,7 @@ const TextSpan = styled.span`
   transform: translate(-50%, -50%);
   z-index: 1;
   font-weight: bold;
+  text-align: center;
 `;
 
 const InfoArea = styled.div`
@@ -96,7 +113,7 @@ const InfoArea = styled.div`
   flex-direction: column;
 
   @media screen and (max-width: 900px) {
-    height: 56px;
+    height: 66px;
   }
 `;
 
