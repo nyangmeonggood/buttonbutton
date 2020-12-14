@@ -53,4 +53,8 @@ export const createElem = (text) => {
     <div></div>
     <span class="text">${text}</span>
   `;
+
+  document.querySelector(".NuneTine").innerHTML = `<span>${text}</span>`;
+  document.querySelector(".UpdownUpdown").innerHTML = `<span>${text}</span>`;
+  document.querySelector(".Overlap").innerHTML = `<span>${text}</span>`;
 };

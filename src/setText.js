@@ -5,6 +5,9 @@ export const setText = (text) => {
   innerText(".Ripple span", text);
   innerText(".VerticalBrick span", text);
   innerText(".PoppingCircle .text", text);
+  innerText(".NuneTine span", text);
+  innerText(".UpdownUpdown span", text);
+  innerText(".Overlap span", text);
 };
 
 const innerText = (target, text) => {
