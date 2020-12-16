@@ -1,5 +1,12 @@
 export const btnContainer = [
-  { name: "Clicker 3D", type: "Click", skill: "CSS", text: true, title: true },
+  {
+    name: "Clicker 3D",
+    duration: "Short",
+    type: "Click",
+    skill: "CSS",
+    text: true,
+    title: true,
+  },
   { name: "SkewBG", type: "Hover", skill: "CSS", text: true, title: true },
   {
     name: "Gooey",
@@ -72,7 +79,7 @@ export const btnContainer = [
     type: "Hover",
     skill: "CSS",
     text: false,
-    posCenter: true,
+    posCenter: false,
     title: false,
   },
   {
@@ -109,6 +116,7 @@ export const btnContainer = [
   },
   {
     name: "Popping Circle",
+    duration: "Long",
     type: "Click",
     skill: "CSS",
     text: false,
@@ -186,5 +194,31 @@ export const btnContainer = [
     text: false,
     posCenter: false,
     title: false,
+  },
+  {
+    name: "KungDuck",
+    duration: "Long",
+    type: "Click",
+    skill: "CSS",
+    text: true,
+    posCenter: false,
+    title: true,
+  },
+  {
+    name: "Spinning Border",
+    type: "Hover",
+    skill: "SVG",
+    text: false,
+    posCenter: false,
+    title: false,
+  },
+  {
+    name: "MasterCircle",
+    duration: "Long",
+    type: "Click",
+    skill: "CSS",
+    text: true,
+    posCenter: false,
+    title: true,
   },
 ];

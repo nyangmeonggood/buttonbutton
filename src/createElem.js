@@ -1,40 +1,33 @@
 export const createElem = (text) => {
-  document.querySelector(".Gooey").innerHTML = `<div class="blurred">
-    <span></span>
-    <span></span>
-  </div>`;
+  ce(".Gooey", `<div class="blurred"><span></span><span></span></div>`);
 
-  document.querySelector(".MoveBehind").innerHTML = `<div class="wave"></div>`;
+  ce(".MoveBehind", `<div class="wave"></div>`);
 
-  document.querySelector(
-    ".CircleArrow"
-  ).innerHTML = `<span class="text">${text}</span><span class="add"><div class="icon">-></div></span>`;
+  ce(
+    ".CircleArrow",
+    `<span class="text">${text}</span><span class="add"><div class="icon">-></div></span>`
+  );
 
-  document.querySelector(".Layered").innerHTML = `
-  <span></span>
-  <span></span>
-  <span class="text">${text}</span>
-  <span></span>`;
+  ce(
+    ".Layered",
+    `<span></span><span></span><span class="text">${text}</span><span></span>`
+  );
 
-  document.querySelector(".Bubble").innerHTML = `
-  <div></div>
-  <span></span>
-  <span></span>
-  <span></span>`;
+  ce(".Bubble", `<div>${text}</div><span></span><span></span><span></span>`);
 
   for (var i = 0; i < 8; i++) {
     var $li = document.createElement("div");
     $li.style.left = `${i * 22.5}px`;
     document.querySelector(".WaveBrick").appendChild($li);
   }
-  document.querySelector(".WaveBrick span").innerHTML = text;
+  ce(".WaveBrick span", `${text}`);
 
   for (var i = 0; i < 8; i++) {
     var $li = document.createElement("div");
     $li.style.left = `${i * 22.5}px`;
     document.querySelector(".Ripple").appendChild($li);
   }
-  document.querySelector(".Ripple span").innerHTML = text;
+  ce(".Ripple span", `${text}`);
   document.querySelector(".Ripple").parentElement.style.filter = `url(#Ripple)`;
 
   for (var i = 0; i < 2; i++) {
@@ -47,14 +40,15 @@ export const createElem = (text) => {
     }
     document.querySelector(".VerticalBrick").appendChild($ul);
   }
-  document.querySelector(".VerticalBrick span").innerHTML = text;
+  ce(".VerticalBrick span", `${text}`);
+  ce(".PoppingCircle", `<div></div><span class="text">${text}</span>`);
 
-  document.querySelector(".PoppingCircle").innerHTML = `
-    <div></div>
-    <span class="text">${text}</span>
-  `;
+  ce(".Overlap", `<span>${text}</span>`);
+  ce(".NuneTine", `<span>${text}</span>`);
+  ce(".UpdownUpdown", `<span>${text}</span>`);
 
-  document.querySelector(".NuneTine").innerHTML = `<span>${text}</span>`;
-  document.querySelector(".UpdownUpdown").innerHTML = `<span>${text}</span>`;
-  document.querySelector(".Overlap").innerHTML = `<span>${text}</span>`;
+  ce(".SpinningBorder", `<svg><rect></rect><span>${text}</span></svg>`);
 };
+
+const ce = (target, contents) =>
+  (document.querySelector(target).innerHTML = contents);
