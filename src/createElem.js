@@ -48,6 +48,11 @@ export const createElem = (text) => {
   ce(".UpdownUpdown", `<span>${text}</span>`);
 
   ce(".SpinningBorder", `<svg><rect></rect><span>${text}</span></svg>`);
+
+  ce(
+    ".Trees",
+    `<span class="text">${text}</span><span class="tree tree1"></span><span class="tree tree2"></span>`
+  );
 };
 
 const ce = (target, contents) =>
