@@ -252,7 +252,7 @@ export const btnContainer = [
     skill: "CSS",
     text: true,
     posCenter: false,
-    title: true,
+    title: false,
   },
   {
     name: "Shake Your Belly",
@@ -260,7 +260,7 @@ export const btnContainer = [
     skill: "CSS",
     text: true,
     posCenter: false,
-    title: true,
+    title: false,
   },
   {
     name: "Corner Up",
@@ -277,7 +277,7 @@ export const btnContainer = [
     skill: "CSS",
     text: true,
     posCenter: false,
-    title: true,
+    title: false,
   },
   {
     name: "Speech Bubble",
@@ -304,7 +304,7 @@ export const btnContainer = [
     title: true,
   },
   {
-    name: "face <- ->",
+    name: "Double Window",
     type: "Hover",
     skill: "CSS",
     text: true,
@@ -312,7 +312,23 @@ export const btnContainer = [
     title: true,
   },
   {
-    name: "face ↑↓",
+    name: "Draw Line",
+    type: "Hover",
+    skill: "CSS",
+    text: true,
+    posCenter: false,
+    title: true,
+  },
+  {
+    name: "Overlay Line",
+    type: "Hover",
+    skill: "CSS",
+    text: true,
+    posCenter: false,
+    title: true,
+  },
+  {
+    name: "Draw Circle",
     type: "Hover",
     skill: "CSS",
     text: true,

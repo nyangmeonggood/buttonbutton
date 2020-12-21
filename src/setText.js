@@ -8,6 +8,12 @@ export const setText = (text) => {
   innerText(".NuneTine span", text);
   innerText(".UpdownUpdown span", text);
   innerText(".Overlap span", text);
+  innerText(".UpdownUpdown span", text);
+  innerText(".Overlap span", text);
+  innerText(".SpinningBorder .text", text);
+  innerText(".Trees .text", text);
+  innerText(".Trees .text", text);
+  innerText(".Bubble .text", text);
 };
 
 const innerText = (target, text) => {

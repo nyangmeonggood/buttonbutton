@@ -13,7 +13,10 @@ export const createElem = (text) => {
     `<span></span><span></span><span class="text">${text}</span><span></span>`
   );
 
-  ce(".Bubble", `<div>${text}</div><span></span><span></span><span></span>`);
+  ce(
+    ".Bubble",
+    `<div class="text">${text}</div><span></span><span></span><span></span>`
+  );
 
   for (var i = 0; i < 8; i++) {
     var $li = document.createElement("div");
@@ -47,7 +50,10 @@ export const createElem = (text) => {
   ce(".NuneTine", `<span>${text}</span>`);
   ce(".UpdownUpdown", `<span>${text}</span>`);
 
-  ce(".SpinningBorder", `<svg><rect></rect><span>${text}</span></svg>`);
+  ce(
+    ".SpinningBorder",
+    `<svg><rect></rect><span class="text">${text}</span></svg>`
+  );
 
   ce(
     ".Trees",
