@@ -59,7 +59,47 @@ export const createElem = (text) => {
     ".Trees",
     `<span class="text">${text}</span><span class="tree tree1"></span><span class="tree tree2"></span>`
   );
+
+  ce(
+    ".DetectClick",
+    `<span class="text">${text}</span><span class="circle"></span>`
+  );
+  document.querySelector(".DetectClick").addEventListener("click", (e) => {
+    mouseDetect(e, ".DetectClick", ".DetectClick .circle");
+    document.querySelector(".DetectClick .circle").classList.add("active");
+
+    setTimeout(() => {
+      document.querySelector(".DetectClick .circle").classList.remove("active");
+    }, 700);
+  });
+
+  ce(
+    ".DetectEnter",
+    `<span class="text">${text}</span><span class="circle"></span>`
+  );
+  document
+    .querySelector(".DetectEnter")
+    .addEventListener("pointerenter", (e) => {
+      mouseDetect(e, ".DetectEnter", ".DetectEnter .circle");
+      document.querySelector(".DetectEnter").classList.add("active");
+    });
+  document
+    .querySelector(".DetectEnter")
+    .addEventListener("pointerleave", (e) => {
+      mouseDetect(e, ".DetectEnter", ".DetectEnter .circle");
+      document.querySelector(".DetectEnter").classList.remove("active");
+    });
 };
 
 const ce = (target, contents) =>
   (document.querySelector(target).innerHTML = contents);
+
+const mouseDetect = (e, target, eTarget) => {
+  var dcx =
+    e.clientX - document.querySelector(target).getBoundingClientRect().left;
+  var dcy =
+    e.clientY - document.querySelector(target).getBoundingClientRect().top;
+
+  document.querySelector(eTarget).style.left = `${dcx}px`;
+  document.querySelector(eTarget).style.top = `${dcy}px`;
+};

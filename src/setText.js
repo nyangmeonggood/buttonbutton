@@ -14,6 +14,8 @@ export const setText = (text) => {
   innerText(".Trees .text", text);
   innerText(".Trees .text", text);
   innerText(".Bubble .text", text);
+  innerText(".DetectClick .text", text);
+  innerText(".DetectEnter .text", text);
 };
 
 const innerText = (target, text) => {
