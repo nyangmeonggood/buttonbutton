@@ -12,6 +12,212 @@
     padding: 20px;
   }
 }
+button {
+  text-align: center;
+}
+
+.PopChange {
+  @include mediaPadding;
+
+  position: relative;
+  overflow: hidden;
+  padding-top: 40px;
+  border-radius: 40px 40px 0 0;
+  color: white;
+  background-color: #f0f0f0;
+
+  &:hover {
+    &::after {
+      top: 0;
+    }
+  }
+
+  &::after {
+    content: "Pop Change!";
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: top 0.5s cubic-bezier(0.95, 0.55, 0.795, 0.035);
+    padding: inherit;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: inherit;
+    box-sizing: border-box;
+    background-color: rebeccapurple;
+  }
+}
+
+.MovieCut {
+  @include mediaSize;
+
+  position: relative;
+  overflow: hidden;
+  padding: 20px 10px;
+
+  &:hover {
+    &::after {
+      transform: rotate(0deg);
+    }
+  }
+
+  &.active {
+    color: #d42926;
+  }
+
+  &:before,
+  &::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+  }
+
+  &:before {
+    left: 0;
+    bottom: 0px;
+    height: 12px;
+    background: linear-gradient(
+      225deg,
+      black 0,
+      black 10%,
+      white 10%,
+      white 15%,
+      black 15%,
+      black 20%,
+      white 20%,
+      white 25%,
+      black 25%,
+      black 30%,
+      white 30%,
+      white 35%,
+      black 35%,
+      black 100%
+    );
+  }
+  &::after {
+    height: 100%;
+    right: 0;
+    bottom: 12px;
+    transform: rotate(90deg);
+    transform-origin: right bottom;
+    transition: transform 0.2s;
+    background: linear-gradient(
+      285deg,
+      black 0,
+      black 10%,
+      white 10%,
+      white 15%,
+      black 15%,
+      black 20%,
+      white 20%,
+      white 25%,
+      black 25%,
+      black 30%,
+      white 30%,
+      white 35%,
+      black 35%,
+      black 100%
+    );
+  }
+}
+
+.MakeFrame {
+  @include mediaPadding;
+
+  position: relative;
+  opacity: 0.5;
+  transition: 0.5s linear;
+
+  .border {
+    position: absolute;
+    background-color: #111;
+    opacity: 0;
+    transition: 0.5s linear;
+    &.borderTop {
+      top: 0;
+      left: 0;
+    }
+
+    &.borderLeft {
+      bottom: 0;
+      left: 0;
+    }
+
+    &.borderBottom {
+      bottom: 0;
+      right: 0;
+    }
+
+    &.borderRight {
+      top: 0;
+      right: 0;
+    }
+    &.borderTop,
+    &.borderBottom {
+      width: 0;
+      height: 2px;
+    }
+    &.borderLeft,
+    &.borderRight {
+      width: 2px;
+      height: 0;
+    }
+  }
+
+  &:hover {
+    opacity: 1;
+    .border {
+      opacity: 1;
+      &.borderTop,
+      &.borderBottom {
+        width: 100%;
+        height: 2px;
+      }
+      &.borderLeft,
+      &.borderRight {
+        width: 2px;
+        height: 100%;
+      }
+    }
+  }
+}
+
+.BGStripe {
+  @include mediaSize;
+  padding: 20px 0;
+  border: 2px solid #ffc312;
+
+  &:hover {
+    color: #d31d1d;
+
+    animation: moveBG_stripe 1.5s infinite linear;
+    background: repeating-linear-gradient(
+      45deg,
+      #ffc312 0,
+      #ffc312 4px,
+      transparent 4px,
+      transparent 7.3px
+    );
+    @media screen and (max-width: 900px) {
+      background: repeating-linear-gradient(
+        45deg,
+        #ffc312 0,
+        #ffc312 4px,
+        transparent 4px,
+        transparent 8px
+      );
+    }
+    @keyframes moveBG_stripe {
+      100% {
+        background-position: 180px 0;
+        @media screen and (max-width: 900px) {
+          background-position: 130px 0;
+        }
+      }
+    }
+  }
+}
 
 .DetectClick,
 .DetectEnter {
@@ -44,9 +250,9 @@
           transform: translate(-50%, -50%) scale(0);
           background-color: rgba(255, 255, 255, 0.3);
         }
-        60% {
+        99% {
           opacity: 1;
-          transform: translate(-50%, -50%) scale(1);
+          transform: translate(-50%, -50%) scale(0.95);
           background-color: rgba(255, 255, 255, 0.4);
         }
         100% {

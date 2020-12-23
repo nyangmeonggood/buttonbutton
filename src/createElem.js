@@ -89,6 +89,12 @@ export const createElem = (text) => {
       mouseDetect(e, ".DetectEnter", ".DetectEnter .circle");
       document.querySelector(".DetectEnter").classList.remove("active");
     });
+
+  setBorder(".MakeFrame", text);
+
+  document.querySelector(".MovieCut").addEventListener("click", () => {
+    document.querySelector(".MovieCut").classList.toggle("active");
+  });
 };
 
 const ce = (target, contents) =>
@@ -102,4 +108,10 @@ const mouseDetect = (e, target, eTarget) => {
 
   document.querySelector(eTarget).style.left = `${dcx}px`;
   document.querySelector(eTarget).style.top = `${dcy}px`;
+};
+
+const setBorder = (target, text) => {
+  document.querySelector(
+    target
+  ).innerHTML = `<span class="text">${text}</span><span class="border borderTop"></span><span class="border borderLeft"></span><span class="border borderRight"></span><span class="border borderBottom"></span>`;
 };
