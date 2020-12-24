@@ -16,6 +16,177 @@ button {
   text-align: center;
 }
 
+.AddAndDelete {
+  @include mediaPadding;
+
+  padding-left: 20px;
+  padding-right: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #dfdfdf;
+
+  &:hover {
+    background-color: #119c00;
+
+    color: white;
+    .icon {
+      width: 20px;
+      margin-left: 4px;
+      span {
+        background-color: white;
+      }
+    }
+  }
+
+  &.active {
+    &:hover {
+      background-color: #d42926;
+
+      .icon span {
+        &:nth-of-type(1) {
+          transform: translate(-50%, -50%) rotate(-45deg);
+        }
+        &:nth-of-type(2) {
+          transform: translate(-50%, -50%) rotate(45deg);
+        }
+      }
+    }
+
+    .icon {
+      span {
+        &:nth-of-type(1) {
+          transform: translate(-50%, -50%) rotate(0);
+        }
+        &:nth-of-type(2) {
+          transform: translate(-50%, -50%) rotate(90deg);
+        }
+      }
+    }
+  }
+
+  .icon {
+    position: relative;
+    width: 0;
+    height: 20px;
+    margin-left: 0;
+    transition: all 0.3s;
+
+    span {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 80%;
+      height: 2px;
+      background-color: #111;
+      transform: translate(-50%, -50%);
+      transition: all 0.3s;
+
+      &:nth-of-type(1) {
+        transform: translate(-50%, -50%) rotate(90deg);
+      }
+    }
+  }
+}
+
+.DragBox {
+  @include mediaPadding;
+  transition: color 0.3s;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 0;
+    height: 0;
+    z-index: -1;
+    border: 1px solid transparent;
+    background-color: rgba(66, 133, 244, 0);
+
+    transform: translateY(-50%);
+    transition: width 0.5s 0.5s, height 0.5s, background-color 0.5s 0.4s;
+  }
+
+  &:hover {
+    color: #fff;
+    transition: color 0.5s 0.5s;
+    &::before {
+      width: 100%;
+      height: 100%;
+      border-color: rgba(11, 11, 11, 0.2);
+      background-color: rgba(66, 133, 244, 0.5);
+
+      transition: width 0.5s 0.5s, height 0.5s, background-color 0s;
+    }
+  }
+}
+.Receipt {
+  @include mediaPadding;
+
+  color: white;
+  background-color: #5758bb;
+
+  &::before {
+    content: "Hi, I'm Fine!";
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 0;
+    padding: 0px;
+    overflow: hidden;
+    box-sizing: border-box;
+    border-radius: 0 0 30px 30px;
+    background-color: darken(#5758bb, 10%);
+    transform: perspective(10px) rotateX(-90deg);
+    transform-origin: center top;
+    transition: transform 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955),
+      height 0.5s linear, padding 0.5s linear;
+  }
+
+  &.active {
+    &::before {
+      height: initial;
+      padding: 20px 0;
+      transform: perspective(10px) rotateX(0deg);
+    }
+  }
+}
+.FullScreen {
+  @include mediaSize;
+
+  padding: 20px 0;
+  box-sizing: border-box;
+  background-color: cadetblue;
+  transition: width 0.5s, height 0.5s, background-color 0s, color 0s;
+
+  &:hover {
+    width: 100%;
+    height: 100%;
+    color: white;
+    background-color: cornflowerblue;
+    transition: width 0.5s, height 0.5s, background-color 0s 0.5s, color 0s 0.5s;
+  }
+}
+
+.FullScreen {
+  @include mediaSize;
+
+  padding: 20px 0;
+  box-sizing: border-box;
+  background-color: cadetblue;
+  transition: width 0.5s, height 0.5s, background-color 0s, color 0s;
+
+  &:hover {
+    width: 100%;
+    height: 100%;
+    color: white;
+    background-color: cornflowerblue;
+    transition: width 0.5s, height 0.5s, background-color 0s 0.5s, color 0s 0.5s;
+  }
+}
+
 .PopChange {
   @include mediaPadding;
 
@@ -1064,7 +1235,7 @@ button.Puding {
     }
   }
 
-  &:active {
+  &.active {
     animation-name: kungduck;
     animation-fill-mode: forwards;
   }

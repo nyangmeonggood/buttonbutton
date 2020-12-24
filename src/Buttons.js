@@ -9,6 +9,7 @@ import { setText } from "./setText.js";
 export default function Buttons({ text }) {
   useEffect(() => {
     createElem(text);
+    console.log(btnContainer.length);
   }, []);
 
   useEffect(() => {

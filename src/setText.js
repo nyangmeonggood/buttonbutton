@@ -16,6 +16,7 @@ export const setText = (text) => {
   innerText(".Bubble .text", text);
   innerText(".DetectClick .text", text);
   innerText(".DetectEnter .text", text);
+  innerText(".AddAndDelete .text", text);
 };
 
 const innerText = (target, text) => {

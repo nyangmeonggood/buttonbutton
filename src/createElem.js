@@ -92,9 +92,15 @@ export const createElem = (text) => {
 
   setBorder(".MakeFrame", text);
 
-  document.querySelector(".MovieCut").addEventListener("click", () => {
-    document.querySelector(".MovieCut").classList.toggle("active");
-  });
+  cickActive(".MovieCut");
+  cickActive(".KungDuck");
+  cickActive(".Receipt");
+
+  ce(
+    ".AddAndDelete",
+    `<span class="text">${text}</span><div class="icon"><span></span><span></span></div>`
+  );
+  cickActive(".AddAndDelete");
 };
 
 const ce = (target, contents) =>
@@ -114,4 +120,10 @@ const setBorder = (target, text) => {
   document.querySelector(
     target
   ).innerHTML = `<span class="text">${text}</span><span class="border borderTop"></span><span class="border borderLeft"></span><span class="border borderRight"></span><span class="border borderBottom"></span>`;
+};
+
+const cickActive = (target) => {
+  document.querySelector(target).addEventListener("click", () => {
+    document.querySelector(target).classList.toggle("active");
+  });
 };
