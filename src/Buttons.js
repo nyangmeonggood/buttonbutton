@@ -39,6 +39,7 @@ export default function Buttons({ text }) {
             </ButtonArea>
             <InfoArea>
               <Type>
+                {item.modal ? `${item.modal}&` : ""}
                 {item.duration ? `${item.duration} ` : ""}
                 {item.type} | {item.skill}
               </Type>

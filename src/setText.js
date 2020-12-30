@@ -17,6 +17,17 @@ export const setText = (text) => {
   innerText(".DetectClick .text", text);
   innerText(".DetectEnter .text", text);
   innerText(".AddAndDelete .text", text);
+  innerText(".SlideText .text", text);
+  innerText(".MakeFrame .text", text);
+  innerText(".FlyAway .text", text);
+  innerText(".Net .text", text);
+  innerText(".RollingOX .text", text);
+  innerText(".ABSlide .text", text);
+  innerText(".BubbleCheck .text", text);
+  innerText(".IndicatingArrow .text", text);
+  innerText(".Checklist .text", text);
+  innerText(".StretchWindow span.text", text);
+  innerText(".TodoList span.text", text);
 };
 
 const innerText = (target, text) => {

@@ -16,6 +16,583 @@ button {
   text-align: center;
 }
 
+.TodoList {
+  position: relative;
+
+  padding: 20px;
+  padding-left: 50px;
+  border: 1px solid #dfdfdf;
+
+  fieldset {
+    text-align: left;
+
+    label {
+      position: relative;
+      display: block;
+
+      span {
+        cursor: pointer;
+        &::before,
+        &::after {
+          content: "";
+          position: absolute;
+          top: 50%;
+          box-sizing: border-box;
+        }
+
+        &::before {
+          left: -34px;
+          width: 24px;
+          height: 24px;
+          border-radius: 50%;
+          border: 2px solid #f0f0f0;
+          background-color: #f0f0f0;
+          transform: translateY(-50%);
+        }
+        &::after {
+          left: -28px;
+          transform: translateY(-60%) rotate(-45deg);
+          width: 0px;
+          height: 0px;
+          border-left: 3px solid transparent;
+          border-bottom: 3px solid transparent;
+          transition: all 0.2s;
+        }
+      }
+      &:not(:last-child) {
+        margin-bottom: 8px;
+      }
+
+      input {
+        display: none;
+
+        &:checked {
+          + span {
+            color: #acacac;
+            text-decoration: line-through;
+
+            &::before {
+              border: 2px solid #f0f0f0;
+              background-color: transparent;
+            }
+            &::after {
+              width: 12px;
+              height: 8px;
+              border-color: #119c00;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.IndicatingArrow {
+  position: relative;
+
+  input {
+    display: none;
+  }
+
+  label {
+    position: relative;
+    display: block;
+    padding-left: 18px;
+    text-align: left;
+    cursor: pointer;
+
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      transition: all 0.5s;
+    }
+
+    &::before {
+      transform: translate(-6px, 3px);
+      border: 6px solid transparent;
+      border-left-color: black;
+    }
+
+    &::after {
+      transform: translate(-15px, 6.5px);
+      background-color: black;
+      width: 10px;
+      height: 4px;
+    }
+
+    &:nth-of-type(1) {
+      margin-bottom: 6px;
+    }
+  }
+
+  input:checked {
+    + label {
+      &::before,
+      &::after {
+        opacity: 1 !important;
+      }
+
+      &::before {
+        transform: translate(0, 3px);
+      }
+
+      &::after {
+        transform: translate(-9px, 6.5px);
+      }
+    }
+  }
+}
+
+.BubbleCheck {
+  position: relative;
+  input {
+    display: none;
+  }
+
+  label {
+    position: relative;
+    display: block;
+    padding-left: 24px;
+    text-align: left;
+    cursor: pointer;
+
+    &:nth-of-type(1) {
+      margin-bottom: 6px;
+    }
+
+    &:hover {
+      color: rgba(11, 11, 11, 0.8);
+    }
+
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 0;
+      border-radius: 50%;
+      background-color: rgba(34, 166, 179, 0.5);
+    }
+
+    &::before {
+      width: 10px;
+      height: 10px;
+      transform: translateY(-50%) scale(0);
+    }
+
+    &::after {
+      width: 10px;
+      height: 10px;
+      transform: translateY(-50%) scale(0);
+    }
+  }
+
+  input:checked {
+    + label {
+      &::before {
+        transform: translateY(-50%) scale(1);
+        transition: 0.5s 0.5s;
+      }
+
+      &::after {
+        opacity: 0;
+        transform: translateY(-50%) scale(1.5);
+        transition: 0.5s;
+      }
+    }
+  }
+}
+
+.Checklist {
+  position: relative;
+  input {
+    display: none;
+  }
+
+  label {
+    position: relative;
+    display: block;
+    padding-left: 24px;
+    text-align: left;
+    cursor: pointer;
+
+    &:hover {
+      color: #6ab04c;
+    }
+
+    &:nth-of-type(1) {
+      margin-bottom: 6px;
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      border-bottom: 1px dotted #111;
+    }
+  }
+
+  input:checked {
+    + label {
+      &::before {
+        content: "✔";
+      }
+    }
+  }
+}
+
+.ABSlide {
+  @include mediaSize;
+
+  box-sizing: border-box;
+  background-color: #30336b;
+
+  > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  span {
+    display: block;
+    width: 50%;
+    height: 100%;
+    color: white;
+    padding: 14px 0;
+
+    &:nth-of-type(1) {
+      color: #3c4086;
+    }
+  }
+
+  .block {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: left 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+    z-index: -1;
+    width: 50%;
+    height: 100%;
+    background-color: white;
+  }
+}
+
+.RollingOX {
+  @include mediaSize;
+
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.5s;
+
+  &:hover {
+    transform: translate(-50%, -100%) rotateX(-90deg);
+    .icon {
+      transform: rotateX(90deg);
+
+      i:active {
+        color: white;
+        &:nth-of-type(1) {
+          background-color: lighten(#4a69bd, 5%);
+        }
+        &:nth-of-type(2) {
+          background-color: lighten(#e55039, 5%);
+        }
+      }
+    }
+  }
+
+  .text {
+    padding: 20px 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    background-color: #fad390;
+  }
+  .icon {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    transform: rotateX(90deg);
+    transform-style: preserve-3d;
+    transform-origin: center top;
+
+    i {
+      display: block;
+      width: 50%;
+      height: 100%;
+      padding: 20px 0;
+      box-sizing: border-box;
+      &:nth-of-type(1) {
+        background-color: #4a69bd;
+      }
+      &:nth-of-type(2) {
+        background-color: #e55039;
+      }
+    }
+  }
+}
+
+.Net {
+  @include mediaPadding;
+
+  position: relative;
+  color: transparent;
+  background-color: #0a3d62;
+  transition: color 0.5s;
+
+  &:active {
+    color: white;
+    .netInner {
+      &.top {
+        transform: translate(0, -10%);
+      }
+      &.bottom {
+        transform: translate(0, 10%);
+      }
+      &.left {
+        transform: translate(-10%, 0);
+      }
+      &.right {
+        transform: translate(10%, 0);
+      }
+    }
+  }
+
+  .text {
+    display: block;
+  }
+
+  .netInner {
+    position: absolute;
+    background-color: white;
+    transition: all 0.5s;
+
+    &.top,
+    &.bottom {
+      left: 0;
+      width: 100%;
+      height: 10px;
+    }
+
+    &.left,
+    &.right {
+      top: 0;
+      width: 10px;
+      height: 100%;
+    }
+    &.top {
+      top: 0;
+      border-radius: 0 0 100% 100%;
+      transform: translate(0, -100%);
+    }
+    &.bottom {
+      bottom: 0;
+      border-radius: 100% 100% 0 0;
+      transform: translate(0, 100%);
+    }
+    &.left {
+      left: 0;
+      border-radius: 0 100% 100% 0;
+      transform: translate(-100%, 0);
+    }
+    &.right {
+      right: 0;
+      border-radius: 100% 0 0 100%;
+      transform: translate(100%, 0);
+    }
+  }
+}
+
+.FlyAway {
+  > div {
+    @include mediaSize;
+
+    position: relative;
+    padding: 20px 0;
+    overflow: hidden;
+  }
+  .text {
+    position: relative;
+    width: 100%;
+    display: block;
+    transition: all 1s;
+  }
+
+  &:hover {
+    .text {
+      width: 200%;
+      transform: translateX(100%);
+      letter-spacing: 2em;
+    }
+  }
+}
+
+.StretchWindow {
+  position: relative;
+
+  .icon {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    background-color: #9980fa;
+    border-radius: 50%;
+    color: white;
+    transition: all 0.5s;
+    z-index: 1;
+  }
+
+  .text {
+    display: block;
+    box-sizing: border-box;
+    overflow: hidden;
+    background-color: #9980fa;
+    transform: scaleX(0);
+    transform-origin: right top;
+  }
+
+  &.active {
+    .icon {
+      top: 0;
+      left: 100%;
+      transform: translate(-50%, -50%) rotate(45deg) scale(0.9);
+    }
+    .text {
+      transform: scaleX(1);
+      padding: 20px;
+      background-color: #f0f0f0;
+      transition: all 0.5s 0.2s;
+    }
+  }
+}
+
+.SlideText {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .icon {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    background-color: #ee5a24;
+    border-radius: 50%;
+    color: white;
+    transition: transform 0.5s;
+  }
+
+  .text {
+    width: 0%;
+    overflow: hidden;
+    color: transparent;
+    transition: width 0.5s, color 0.5s;
+  }
+
+  &.active {
+    .icon {
+      transform: rotate(-45deg);
+    }
+    .text {
+      width: 50%;
+      color: #111;
+    }
+  }
+}
+
+.PopYesNo {
+  @include mediaSize;
+
+  position: relative;
+  padding: 20px 0;
+  overflow: hidden;
+  transition: color 0.3s 0.2s;
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    z-index: -1;
+    padding: 10px;
+    border-radius: 20px;
+    background-color: #f0f0f0;
+    color: white;
+    transition: all 0.7s;
+  }
+
+  &::before {
+    content: "YES";
+    left: 00%;
+    transform: translate(-100%, -50%);
+  }
+  &::after {
+    content: "NO";
+    left: 100%;
+    transform: translate(0, -50%);
+    transition-delay: 0.1s;
+  }
+
+  &:hover {
+    color: transparent;
+    transition: color 0.3s;
+
+    &::before {
+      transform: translate(10%, -50%);
+      background-color: #009432;
+    }
+    &::after {
+      transform: translate(-110%, -50%);
+      background-color: #ee5a24;
+    }
+  }
+}
+
+.ButtonWindow {
+  position: relative;
+  height: 0%;
+  color: white;
+  transition: padding 0.5s, color 0s;
+
+  &.active {
+    padding: 40px 30px 20px 30px;
+    height: initial;
+    color: #111;
+    box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.05);
+    transition: padding 0.5s, color 0.5s 0.5s;
+
+    &::after {
+      content: "CLOSE";
+      padding: 12px;
+      background-color: #ebebeb;
+    }
+  }
+
+  &::after {
+    content: "OPEN";
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translate(-50%, -50%);
+    padding: 12px 20px;
+    border-radius: 100px;
+    background-color: #b53471;
+    color: white;
+    font-size: 0.8em;
+  }
+}
+
 .AddAndDelete {
   @include mediaPadding;
 
@@ -121,6 +698,7 @@ button {
     }
   }
 }
+
 .Receipt {
   @include mediaPadding;
 
@@ -153,9 +731,11 @@ button {
     }
   }
 }
+
 .FullScreen {
   @include mediaSize;
 
+  height: 60px;
   padding: 20px 0;
   box-sizing: border-box;
   background-color: cadetblue;
@@ -166,24 +746,7 @@ button {
     height: 100%;
     color: white;
     background-color: cornflowerblue;
-    transition: width 0.5s, height 0.5s, background-color 0s 0.5s, color 0s 0.5s;
-  }
-}
-
-.FullScreen {
-  @include mediaSize;
-
-  padding: 20px 0;
-  box-sizing: border-box;
-  background-color: cadetblue;
-  transition: width 0.5s, height 0.5s, background-color 0s, color 0s;
-
-  &:hover {
-    width: 100%;
-    height: 100%;
-    color: white;
-    background-color: cornflowerblue;
-    transition: width 0.5s, height 0.5s, background-color 0s 0.5s, color 0s 0.5s;
+    transition: width 0.5s, height 0.5s, background-color 0s 0.3s, color 0s 0.3s;
   }
 }
 

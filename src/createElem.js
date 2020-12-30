@@ -92,15 +92,78 @@ export const createElem = (text) => {
 
   setBorder(".MakeFrame", text);
 
-  cickActive(".MovieCut");
-  cickActive(".KungDuck");
-  cickActive(".Receipt");
+  clickActive(".MovieCut");
+  clickActive(".KungDuck");
+  clickActive(".Receipt");
 
   ce(
     ".AddAndDelete",
     `<span class="text">${text}</span><div class="icon"><span></span><span></span></div>`
   );
-  cickActive(".AddAndDelete");
+  clickActive(".AddAndDelete");
+
+  clickActive(".ButtonWindow");
+
+  ce(
+    ".SlideText",
+    `<div class="icon"><i class="fas fa-plus"></i></div><span class="text">${text}</span>`
+  );
+  clickActive(".SlideText");
+
+  ce(
+    ".StretchWindow",
+    `<div class="icon"><i class="fas fa-plus"></i></div><span class="text">${text}</span>`
+  );
+  clickActive(".StretchWindow");
+
+  ce(".FlyAway", `<div><span class="text">${text}</span></div>`);
+
+  ce(
+    ".Net",
+    `<div class="netInner top"></div><div class="netInner left"></div><div class="netInner right"></div><div class="netInner bottom"></div><span class="text">${text}</span>`
+  );
+
+  ce(
+    ".RollingOX",
+    `<span class="text">${text}</span><div class="icon"><i class="fas fa-check"></i><i class="fas fa-times"></i></div>`
+  );
+
+  ce(
+    ".ABSlide",
+    `<div><span class="text">${text}</span><span class="right">No,<br>It isn't!</span><div class="block"></div></div>`
+  );
+  document.querySelector(".ABSlide .text").addEventListener("click", () => {
+    document.querySelector(".ABSlide .block").style.left = 0;
+    document.querySelector(".ABSlide .text").style.color = `#3c4086`;
+    document.querySelector(".ABSlide .right").style.color = `#fff`;
+  });
+  document.querySelector(".ABSlide .right").addEventListener("click", () => {
+    document.querySelector(".ABSlide .block").style.left = `50%`;
+    document.querySelector(".ABSlide .text").style.color = `#fff`;
+    document.querySelector(".ABSlide .right").style.color = `#3c4086`;
+  });
+
+  setInput(".Checklist", text);
+  setInput(".BubbleCheck", text);
+  setInput(".IndicatingArrow", text);
+
+  ce(
+    ".TodoList",
+    `<fieldset>
+      <label class="todoList-item">
+        <input type="checkbox" name="todo_1" value="1" class="todoList-cb" checked>
+        <span class="todoList-desc text">${text}</span>
+      </label>
+      <label class="todoList-item">
+        <input type="checkbox" name="todo_2" value="1" class="todoList-cb">
+        <span class="todoList-desc">Eat food</span>
+      </label>
+      <label class="todoList-item">
+        <input type="checkbox" name="todo_3" value="1" class="todoList-cb">
+        <span class="todoList-desc">Study Css</span>
+      </label>
+    </fieldset>`
+  );
 };
 
 const ce = (target, contents) =>
@@ -122,8 +185,14 @@ const setBorder = (target, text) => {
   ).innerHTML = `<span class="text">${text}</span><span class="border borderTop"></span><span class="border borderLeft"></span><span class="border borderRight"></span><span class="border borderBottom"></span>`;
 };
 
-const cickActive = (target) => {
+const clickActive = (target) => {
   document.querySelector(target).addEventListener("click", () => {
     document.querySelector(target).classList.toggle("active");
   });
+};
+
+const setInput = (target, text) => {
+  document.querySelector(
+    target
+  ).innerHTML = `<input type="radio" name="${target}1" id="${target}1_1" checked><label class="text" for="${target}1_1">${text}</label><input type="radio" name="${target}1" id="${target}1_2"><label class="text" for="${target}1_2">No</label>`;
 };
