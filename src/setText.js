@@ -28,6 +28,7 @@ export const setText = (text) => {
   innerText(".Checklist .text", text);
   innerText(".StretchWindow span.text", text);
   innerText(".TodoList span.text", text);
+  innerText(".FollowingCursor .text", text);
 };
 
 const innerText = (target, text) => {

@@ -91,6 +91,8 @@ export const createElem = (text) => {
     });
 
   setBorder(".MakeFrame", text);
+  setBorder(".Gathering", text);
+  setBorder(".MakeDistance", text);
 
   clickActive(".MovieCut");
   clickActive(".KungDuck");
@@ -146,6 +148,28 @@ export const createElem = (text) => {
   setInput(".Checklist", text);
   setInput(".BubbleCheck", text);
   setInput(".IndicatingArrow", text);
+  setInput(".FollowingCursor", text);
+
+  document.querySelector(".FollowingCursor .text1").addEventListener("click",()=>{
+    document.querySelector(".FollowingCursor").classList.remove("activeDown")
+    document.querySelector(".FollowingCursor").classList.add("activeUp")
+  })
+  document.querySelector(".FollowingCursor .text2").addEventListener("click",()=>{
+    document.querySelector(".FollowingCursor").classList.remove("activeUp")
+    document.querySelector(".FollowingCursor").classList.add("activeDown")
+  })
+  document.querySelector(".FollowingCursor .text1").addEventListener("pointerenter",()=>{
+    document.querySelector(".FollowingCursor").classList.add("moveUp")
+  })
+  document.querySelector(".FollowingCursor .text1").addEventListener("pointerleave",()=>{
+    document.querySelector(".FollowingCursor").classList.remove("moveUp")
+  })
+  document.querySelector(".FollowingCursor .text2").addEventListener("pointerenter",()=>{
+    document.querySelector(".FollowingCursor").classList.add("moveDown")
+  })
+  document.querySelector(".FollowingCursor .text2").addEventListener("pointerleave",()=>{
+    document.querySelector(".FollowingCursor").classList.remove("moveDown")
+  })
 
   ce(
     ".TodoList",
@@ -164,7 +188,12 @@ export const createElem = (text) => {
       </label>
     </fieldset>`
   );
-};
+  
+  clickActive(".RollingDia");
+  clickActive(".BGChangeButton");
+  clickActive(".Gathering");
+
+};/* end */
 
 const ce = (target, contents) =>
   (document.querySelector(target).innerHTML = contents);
@@ -194,5 +223,5 @@ const clickActive = (target) => {
 const setInput = (target, text) => {
   document.querySelector(
     target
-  ).innerHTML = `<input type="radio" name="${target}1" id="${target}1_1" checked><label class="text" for="${target}1_1">${text}</label><input type="radio" name="${target}1" id="${target}1_2"><label class="text" for="${target}1_2">No</label>`;
+  ).innerHTML = `<input type="radio" name="${target}1" id="${target}1_1" checked><label class="text text1" for="${target}1_1">${text}</label><input type="radio" name="${target}1" id="${target}1_2"><label class="text text2" for="${target}1_2">No</label>`;
 };
