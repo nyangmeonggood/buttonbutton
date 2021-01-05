@@ -79,8 +79,1374 @@
     }
   }
 }
+@mixin animate($time) {
+  animation-duration: $time;
+  animation-iteration-count: infinite;
+}
+
 button {
   text-align: center;
+}
+
+.LoadingBalls {
+  @include mediaSize;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  color: transparent;
+  transition: color 0.3s 0.3s;
+
+  &:hover {
+    color: #111;
+    .ball {
+      opacity: 0;
+      animation-play-state: paused;
+    }
+  }
+
+  > div {
+    transform: translate(-50%, -50%);
+
+    &,
+    .ball {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 20px;
+      height: 20px;
+    }
+  }
+  .ball {
+    @include animate(1s);
+    border-radius: 100%;
+    transition: opacity 0.5s,
+      transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    background-color: #dbdbdb;
+
+    &.ball1 {
+      transform: translate(-200%, -50%);
+      animation-name: LoadingBalls1;
+      @keyframes LoadingBalls1 {
+        0% {
+          transform: translate(-200%, -50%);
+        }
+        40% {
+          transform: translate(-200%, -200%);
+          background-color: #4d90fe;
+        }
+        60% {
+          transform: translate(-200%, -200%);
+          background-color: #4d90fe;
+        }
+        100% {
+          transform: translate(-200%, -50%);
+        }
+      }
+    }
+    &.ball2 {
+      transform: translate(-50%, -50%);
+      animation-name: LoadingBalls2;
+      animation-delay: 0.75s;
+      @keyframes LoadingBalls2 {
+        0% {
+          transform: translate(-50%, -50%);
+        }
+        40% {
+          transform: translate(-50%, -200%);
+          background-color: #ffc700;
+        }
+        60% {
+          transform: translate(-50%, -200%);
+          background-color: #ffc700;
+        }
+        100% {
+          transform: translate(-50%, -50%);
+        }
+      }
+    }
+    &.ball3 {
+      transform: translate(100%, -50%);
+      animation-name: LoadingBalls3;
+      animation-delay: 1.5s;
+      @keyframes LoadingBalls3 {
+        0% {
+          transform: translate(100%, -50%);
+        }
+        40% {
+          transform: translate(100%, -200%);
+          background-color: #e94242;
+        }
+        60% {
+          transform: translate(100%, -200%);
+          background-color: #e94242;
+        }
+        100% {
+          transform: translate(100%, -50%);
+        }
+      }
+    }
+  }
+}
+
+.Jiggle {
+  @include animate(0.5s);
+  animation-name: jiggle;
+  position: relative;
+  transform: translate(-50%, -50%) scale(2) !important;
+  padding: 4px;
+  background-color: #aaa69d;
+
+  @keyframes jiggle {
+    0% {
+      filter: url("#jiggle0");
+    }
+    25% {
+      filter: url("#jiggle1");
+    }
+    50% {
+      filter: url("#jiggle2");
+    }
+    75% {
+      filter: url("#jiggle3");
+    }
+    100% {
+      filter: url("#jiggle4");
+    }
+  }
+
+  &::after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 0;
+    transform: translate(-50%, -50%);
+    overflow: hidden;
+    content: attr(data-jiggle);
+    color: #f7f1e3;
+    transition: height 0.5s;
+  }
+
+  &:hover {
+    &::after {
+      height: 100%;
+    }
+  }
+}
+
+.Raindrop {
+  top: -10px !important;
+  width: 120px;
+  height: 120px;
+  border-radius: 100% 0 100% 100%;
+  color: #77d9f6;
+  background-color: #77d9f6;
+  transform: translate(0%, -50%) rotate(-45deg) scale(0.5) !important;
+  transition: top 0.5s, transform 0.3s, border-radius 0.5s, color 0.2s;
+
+  &.active {
+    top: 50% !important;
+    transform: translate(-50%, -50%) rotate(0deg) scale(1) !important;
+    border-radius: 100% 100% 100% 100%;
+    transition: top 0.5s, transform 1s, border-radius 1s 0.25s, color 0.2s;
+    color: #111;
+  }
+}
+
+.FourBalls {
+  @include mediaSize;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  color: transparent;
+  transition: color 0.3s 0.3s;
+
+  &:hover {
+    color: #111;
+    .ball {
+      opacity: 0;
+
+      &.ball1 {
+        transform: translate(-300%, -300%);
+      }
+      &.ball2 {
+        transform: translate(200%, -300%);
+      }
+      &.ball3 {
+        transform: translate(-300%, 200%);
+      }
+      &.ball4 {
+        transform: translate(200%, 200%);
+      }
+    }
+  }
+
+  > div {
+    transform: translate(-50%, -50%);
+    animation: FourBalls 3s infinite;
+    @keyframes FourBalls {
+      0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+      }
+      50% {
+        transform: translate(-50%, -50%) rotate(360deg);
+      }
+      100% {
+        transform: translate(-50%, -50%) rotate(1080deg);
+      }
+    }
+
+    &,
+    .ball {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 20px;
+      height: 20px;
+    }
+  }
+  .ball {
+    border-radius: 100%;
+    transition: opacity 0.5s,
+      transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+    &.ball1 {
+      transform: translate(-100%, -100%);
+      background-color: #4d90fe;
+    }
+    &.ball2 {
+      transform: translate(0%, -100%);
+      background-color: #ffc700;
+    }
+    &.ball3 {
+      transform: translate(-100%, 0%);
+      background-color: #e94242;
+    }
+    &.ball4 {
+      transform: translate(0%, 0%);
+      background-color: #80c342;
+    }
+  }
+}
+
+.ExpendingChecker {
+  position: relative;
+  ul {
+    li {
+      height: 24px;
+      line-height: 24px;
+      text-align: left;
+      color: rgba(0, 0, 0, 0.2);
+      transition: color 0.2s;
+      &:hover {
+        color: #d31d1d;
+      }
+    }
+  }
+  .ball {
+    position: absolute;
+    left: -20px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50px;
+    background-color: #d31d1d;
+    animation-fill-mode: forwards;
+    animation-duration: 0.5s;
+  }
+  &.act1 {
+    .ExpendingChecker1 {
+      color: #d31d1d;
+    }
+    .ball {
+      animation-name: act1;
+      @keyframes act1 {
+        0% {
+          height: 14px;
+          bottom: 6px;
+        }
+        50% {
+          height: calc(100% - 12px);
+          top: 6px;
+        }
+        100% {
+          height: 14px;
+          top: 6px;
+        }
+      }
+    }
+  }
+
+  &.act2 {
+    .ExpendingChecker2 {
+      color: #d31d1d;
+    }
+    .ball {
+      animation-name: act2;
+      @keyframes act2 {
+        0% {
+          height: 14px;
+          top: 6px;
+        }
+        50% {
+          height: calc(100% - 12px);
+          bottom: 6px;
+        }
+        100% {
+          height: 14px;
+          bottom: 6px;
+        }
+      }
+    }
+  }
+}
+
+.Moon {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  border-radius: 100%;
+  line-height: 120px;
+  color: #ffbe04;
+  background: #ffbe04;
+  transition: color 1.5s;
+  &::before {
+    content: "";
+    width: 500px;
+    height: 500px;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    transition: background-color 3s;
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+    background-color: white;
+    transform: translate(-125%, -125%);
+    transition: transform 0s, background-color 3s;
+  }
+
+  &:active {
+    color: white;
+    transition: color 3s 2s;
+    &::before {
+      background-color: #333;
+    }
+    &::after {
+      transform: translate(125%, 125%);
+      transition: transform 6s, background-color 3s;
+      background-color: #333;
+    }
+  }
+}
+
+.BorderColorChange {
+  @include mediaSize;
+  padding: 20px 0;
+
+  position: relative;
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 0;
+    height: 4px;
+  }
+
+  &::before {
+    background-color: #e2b741;
+    transition: width 0.4s 0.1s;
+  }
+  &::after {
+    background-color: #227093;
+    transition: width 0.4s;
+  }
+
+  &:hover {
+    &::before,
+    &::after {
+      width: 100%;
+      left: 0;
+    }
+  }
+}
+
+.MoveGradation {
+  @include mediaSize;
+  height: 60px;
+  color: #e3e7eb;
+  background: linear-gradient(130deg, #518cb0 0%, #b63099 100%);
+  background-size: 250% auto;
+  background-position: left center;
+  transition: all 0.5s;
+
+  &:active {
+    color: #ffdfff;
+    background-position: right center;
+  }
+}
+
+.Machine {
+  padding: 0 40px;
+
+  @media screen and (max-width: 900px) {
+    padding: 0 20px;
+  }
+
+  position: relative;
+  box-sizing: border-box;
+  height: 50px;
+  transition: color 0.2s;
+  line-height: 50px;
+  color: #fff;
+
+  &::before,
+  &::after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 500px;
+  }
+  &::before {
+    content: "";
+    width: 100%;
+    padding: 10px;
+    height: 100%;
+    z-index: -2;
+    @include animate(1s);
+    animation-name: machine;
+
+    @keyframes machine {
+      0% {
+        background: linear-gradient(90deg, #f94f26, #51ae34);
+      }
+      10% {
+        background: linear-gradient(126deg, #f94f26, #51ae34);
+      }
+      20% {
+        background: linear-gradient(162deg, #f94f26, #51ae34);
+      }
+      30% {
+        background: linear-gradient(198deg, #f94f26, #51ae34);
+      }
+      40% {
+        background: linear-gradient(234deg, #f94f26, #51ae34);
+      }
+      50% {
+        background: linear-gradient(270deg, #f94f26, #51ae34);
+      }
+      60% {
+        background: linear-gradient(306deg, #f94f26, #51ae34);
+      }
+      70% {
+        background: linear-gradient(342deg, #f94f26, #51ae34);
+      }
+      80% {
+        background: linear-gradient(18deg, #f94f26, #51ae34);
+      }
+      90% {
+        background: linear-gradient(54deg, #f94f26, #51ae34);
+      }
+      100% {
+        background: linear-gradient(90deg, #f94f26, #51ae34);
+      }
+    }
+  }
+  &::after {
+    content: "Click!";
+    top: 50%;
+    width: 100%;
+    height: 100%;
+    color: #111;
+    background-color: #fff;
+    overflow: hidden;
+    transition: top 0.5s cubic-bezier(0.07, 1.2, 0.96, 0.56);
+    box-shadow: 0 0 10px 14px rgba(0, 0, 0, 0.05);
+  }
+
+  &.active {
+    &::before {
+      background: linear-gradient(to right, #f94f26, #51ae34);
+    }
+    &::after {
+      content: "Clicked!";
+      top: 150%;
+    }
+  }
+}
+
+.StepBotLine {
+  padding: 20px;
+
+  border-bottom: 1px dashed #42601f;
+  box-sizing: border-box;
+  transition: color 0.3s;
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 100%;
+    width: 0;
+    height: 1px;
+    background-color: #42601f;
+    transform: translateX(-50%) scaleY(1);
+    transition: width 0.5s 0.3s, transform 0.3s;
+  }
+
+  &:active {
+    color: #42601f;
+    transition: color 0.3s 0.5s;
+    &::before {
+      width: 100%;
+      transform: translateX(-50%) scaleY(3);
+      transition: width 0.5s, transform 0.3s 0.5s;
+    }
+  }
+}
+
+.ShadowParticle {
+  @include mediaSize;
+  @include setBorder(20px);
+
+  padding: 40px 0;
+  overflow: hidden;
+
+  .text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+  }
+  .border {
+    background-color: transparent;
+    &.borderLeft {
+      top: 100%;
+    }
+    &.borderRight {
+      top: -100%;
+    }
+  }
+  &:hover {
+    .border {
+      animation-iteration-count: infinite;
+      animation-duration: 1s;
+
+      &.borderTop {
+        background: linear-gradient(to left, #ffb142, transparent);
+        animation-name: ShadowParticleTop;
+        @keyframes ShadowParticleTop {
+          0% {
+            left: -100%;
+          }
+          100% {
+            left: 100%;
+          }
+        }
+      }
+      &.borderBottom {
+        background: linear-gradient(to right, #ffb142, transparent);
+        animation-name: ShadowParticleBottom;
+        @keyframes ShadowParticleBottom {
+          0% {
+            left: 100%;
+          }
+          100% {
+            left: -100%;
+          }
+        }
+      }
+
+      &.borderLeft {
+        background: linear-gradient(to bottom, #ffb142, transparent);
+        animation-name: ShadowParticleLeft;
+        animation-delay: 0.5s;
+        @keyframes ShadowParticleLeft {
+          0% {
+            top: 100%;
+          }
+          100% {
+            top: -100%;
+          }
+        }
+      }
+      &.borderRight {
+        background: linear-gradient(to top, #ffb142, transparent);
+        animation-name: ShadowParticleRight;
+        animation-delay: 0.5s;
+        @keyframes ShadowParticleRight {
+          0% {
+            top: -100%;
+          }
+          100% {
+            top: 100%;
+          }
+        }
+      }
+    }
+  }
+}
+
+.LongShadow {
+  @include mediaPadding;
+  top: 100% !important;
+  left: 100% !important;
+  transform: translate(-100%, -100%) !important;
+  background-color: #40407a;
+  color: white;
+  transition: all 0.5s cubic-bezier(0.27, 1.57, 0.73, -0.57);
+
+  &:active {
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+  }
+}
+
+.TearTicket {
+  position: relative;
+  padding: 20px 14px;
+  padding-bottom: 28px;
+  background: linear-gradient(
+    to bottom,
+    #f7f1e3 70%,
+    #ff793f 70%,
+    #ff793f 73%,
+    #f7f1e3 73%,
+    #f7f1e3 78%,
+    #ff793f 78%,
+    #ff793f 81%,
+    #f7f1e3 81%
+  );
+
+  &:active {
+    &::after {
+      transform: translateY(70%);
+    }
+  }
+
+  &::before {
+    transform: rotate(180deg) translateY(50%);
+    background: linear-gradient(
+        45deg,
+        transparent 33.33%,
+        #f7f1e3 33.33%,
+        #f7f1e3 66.66%,
+        transparent 66.66%
+      ),
+      linear-gradient(
+        -45deg,
+        transparent 33.33%,
+        #f7f1e3 33.33%,
+        #f7f1e3 66.66%,
+        transparent 66.66%
+      );
+  }
+  &::after {
+    transform: translateY(-50%);
+    background: linear-gradient(
+        -45deg,
+        transparent 33.33%,
+        #f7f1e3 33.33%,
+        #f7f1e3 66.66%,
+        transparent 66.66%
+      ),
+      linear-gradient(
+        45deg,
+        transparent 33.33%,
+        #f7f1e3 33.33%,
+        #f7f1e3 66.66%,
+        transparent 66.66%
+      );
+    transition: transform 0.3s;
+  }
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    padding: 10px 4px;
+    box-sizing: border-box;
+    background-size: 8px 30px;
+  }
+}
+
+.SpinningAngle {
+  @include animate(5s);
+  animation-name: SpinningAngle;
+  width: 120px;
+  height: 120px;
+  color: #111;
+  transition: transform 0.5s;
+  &:hover {
+    transform: translate(-50%, -50%) scale(1.05);
+  }
+
+  @keyframes SpinningAngle {
+    0% {
+      border-radius: 50% 15% 50% 50%;
+      background-color: rgb(224, 166, 90);
+    }
+    25% {
+      border-radius: 50% 50% 15% 50%;
+      background-color: rgb(139, 204, 96);
+    }
+    50% {
+      border-radius: 50% 50% 50% 15%;
+      background-color: rgb(82, 157, 192);
+    }
+    75% {
+      border-radius: 15% 50% 50% 50%;
+      background-color: rgb(206, 115, 62);
+    }
+    100% {
+      border-radius: 50% 15% 50% 50%;
+      background-color: rgb(224, 166, 90);
+    }
+  }
+}
+
+.DDiyong {
+  @include mediaPadding;
+
+  transform-origin: center bottom;
+  animation-duration: 0.7s;
+  animation-fill-mode: forwards;
+
+  &:hover {
+    animation-name: DDiyong;
+  }
+
+  @keyframes DDiyong {
+    0% {
+      transform: translate(-50%, -50%) skewX(70deg);
+    }
+    20% {
+      transform: translate(-50%, -50%) skewX(-8deg);
+    }
+    50% {
+      transform: translate(-50%, -50%) skewX(4deg);
+    }
+    70% {
+      transform: translate(-50%, -50%) skewX(0deg);
+    }
+    100% {
+      color: #5c639c;
+    }
+  }
+}
+
+.Shield {
+  @include mediaPadding;
+  position: relative;
+  background: #eeeeee;
+  transform-origin: center;
+  transition: all 0.2s;
+
+  &::after {
+    @include mediaPadding;
+    padding-left: 0;
+    padding-right: 0;
+    content: "SHIELD";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    transform: translate(-50%, -50%) rotateX(90deg);
+    transform-origin: center top;
+    z-index: 1;
+    background: #2baca5;
+    box-sizing: border-box;
+    transition: transform 0.2s 0.1s, letter-spacing 0.4s 0.1s;
+    text-align: center;
+  }
+
+  &.active {
+    transform: translate(-50%, -50%) scale(0.8);
+    &::after {
+      transform: translate(-50%, -50%) rotateX(0deg) scale(1.2);
+      letter-spacing: 0.06em;
+    }
+  }
+}
+
+.DDoingDDoing {
+  @include animate(1s);
+
+  width: 120px;
+  height: 120px;
+  line-height: 120px;
+  border-radius: 50%;
+  background-color: #f7f1e3;
+  animation-name: DDoingDDoing;
+
+  &:hover {
+    color: #9e998e !important;
+    border: 2px solid #e9e2d2;
+    background-color: transparent;
+    animation-play-state: paused;
+  }
+
+  @keyframes DDoingDDoing {
+    0% {
+      transform: translate(-50%, -50%) scaleY(1);
+    }
+    20% {
+      transform: translate(-50%, -45%) scaleY(0.8);
+    }
+    80% {
+      transform: translate(-50%, -70%);
+    }
+    100% {
+      transform: translate(-50%, -50%) scaleY(1);
+    }
+  }
+}
+
+.Vibration {
+  @include mediaPadding;
+  position: relative;
+
+  &:hover {
+    color: white !important;
+    &::before {
+      animation-play-state: paused;
+      transform: translate(-50%, -50%) rotate(0);
+      background-color: #111;
+    }
+  }
+
+  &::before {
+    @include animate(0.8s);
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 2px solid #111;
+    border-radius: 10px;
+    animation-name: Vibration;
+    z-index: -1;
+  }
+
+  @keyframes Vibration {
+    0% {
+      transform: translate(-50%, -50%);
+    }
+    10% {
+      transform: translate(-50%, -50%) rotate(2deg);
+    }
+    30% {
+      transform: translate(-50%, -50%) rotate(-2deg);
+    }
+    40% {
+      transform: translate(-50%, -50%) rotate(2deg);
+    }
+    60% {
+      transform: translate(-50%, -50%) rotate(-2deg);
+    }
+    70% {
+      transform: translate(-50%, -50%) rotate(0deg);
+    }
+    100% {
+      transform: translate(-50%, -50%);
+    }
+  }
+}
+
+.CoverUp {
+  @include mediaPadding;
+  transform-style: preserve-3d;
+  background-color: #dbdbdb;
+  perspective: 250px;
+  color: white;
+  border-radius: 0 0 20px 20px;
+
+  &::after {
+    @include mediaPadding;
+
+    content: "COVER";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+    background-color: #82ccdd;
+    letter-spacing: 0.5em;
+    border-radius: inherit;
+    transform-origin: center top;
+    transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+  }
+
+  &:active {
+    &::after {
+      transform: rotateX(80deg);
+    }
+  }
+}
+
+.ReverseCard {
+  @include mediaPadding;
+  transform-style: preserve-3d;
+  background-color: #c43;
+  transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+  color: white;
+  border-radius: 20px;
+
+  &::before {
+    @include mediaPadding;
+
+    content: "Reverse!";
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: rotateY(180deg);
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+    background-color: #0a3d62;
+    border-radius: 20px;
+  }
+
+  &:hover {
+    transform: translate(-50%, -50%) rotateY(900deg) !important;
+  }
+}
+
+.RumblingBox {
+  position: relative;
+  padding: 10px;
+
+  &::after {
+    content: "BOX";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: inherit;
+    background-color: #e58e26;
+  }
+
+  &:active {
+    &::after {
+      top: 500%;
+      transform-origin: left top;
+      transform: rotate(70deg);
+      transition: transform 0.5s cubic-bezier(0.52, 1.84, 0.59, -0.79),
+        top 1s 0.3s;
+    }
+  }
+}
+
+.FalldownNamecard {
+  position: relative;
+  padding: 12px 0;
+  color: transparent;
+  transition: color 0.3s;
+
+  &::before {
+    content: "Name";
+    position: absolute;
+    padding: 12px 10px 12px 20px;
+    box-sizing: border-box;
+    height: 100%;
+    top: 0;
+    right: 0;
+    background: linear-gradient(135deg, transparent 10px, #c8b7e5 10px);
+    color: #111;
+    transition: transform 0.3s cubic-bezier(0.87, 0.47, 0, 1.47);
+    transform-origin: right bottom;
+  }
+
+  &.active {
+    color: #111;
+    &::before {
+      right: -6px;
+      transform: rotate(90deg);
+    }
+  }
+}
+
+.PopNamecard {
+  position: relative;
+  padding: 12px 0;
+  color: transparent;
+  transition: color 0.3s;
+
+  &::before {
+    content: "?";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 100%;
+    padding: 12px 0;
+    background-color: #fc3;
+    color: #111;
+    transition: transform 0.3s;
+    transform: translate(-50%, 0);
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -130%) rotate(45deg);
+    z-index: -1;
+    width: 10px;
+    height: 10px;
+    background-color: #fc3;
+    opacity: 0;
+  }
+
+  &.active {
+    color: #111;
+    &::before {
+      transform: translate(-50%, -100%) scale(0.7);
+    }
+    &::after {
+      opacity: 1;
+      transition: opacity 0.5s;
+    }
+  }
+}
+
+.MoveNamecard {
+  position: relative;
+  padding: 12px 0;
+  color: transparent;
+  transition: color 0.3s;
+
+  &::before {
+    content: "Name";
+    position: absolute;
+    padding: 12px 10px;
+    box-sizing: border-box;
+    top: 0;
+    left: 0;
+    border-radius: 0 20px 20px 0;
+    background-color: #fc3;
+    color: #111;
+    transition: transform 0.3s;
+  }
+
+  &.active {
+    color: #111;
+    &::before {
+      left: -6px;
+      transform: translateX(-100%);
+    }
+  }
+}
+
+.SwitchCircle {
+  width: 100%;
+  height: 100%;
+
+  .text {
+    display: inline-block;
+    margin-bottom: 10px;
+  }
+
+  &.active {
+    background-color: #8ec01a;
+    color: #fff;
+
+    .circle {
+      left: calc(50% + 2px);
+      background-color: #8ec01a;
+    }
+  }
+  div {
+    position: relative;
+    margin: 0 auto;
+    width: 80px;
+    height: 40px;
+    border-radius: 200px;
+    background-color: #e9e9e9;
+    .circle {
+      position: absolute;
+      top: 50%;
+      left: 4px;
+      transform: translateY(-50%);
+      width: 34px;
+      height: 34px;
+      border-radius: 100%;
+      background-color: #fff;
+      transition: left 0.5s ease-in-out;
+      &:active {
+        background-color: #8ec01a;
+      }
+    }
+  }
+}
+
+.CornerDown {
+  @include mediaPadding;
+  position: relative;
+  overflow: hidden;
+  box-shadow: inset 0px 0px 2px 2px #f0f0f0;
+  transition: color 0.2s;
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+  }
+  &::before {
+    left: -150%;
+    transform: skewX(-45deg) scale(2);
+    z-index: -1;
+    background-color: #f0f0f0;
+    transition: left 0.5s;
+  }
+  &::after {
+    width: calc(100% - 2px);
+    right: 1px;
+    opacity: 0;
+    background-color: #3c6383;
+    z-index: -2;
+    transition: opacity 0.5s;
+  }
+
+  &:hover {
+    color: #3c6383;
+    &::before {
+      left: -50%;
+    }
+    &::after {
+      opacity: 1;
+    }
+  }
+}
+
+.CheckToX {
+  position: relative;
+
+  padding: 20px;
+  padding-left: 50px;
+  color: #acacac;
+
+  fieldset {
+    text-align: left;
+
+    label {
+      position: relative;
+      display: block;
+
+      span {
+        cursor: pointer;
+
+        b {
+          display: block;
+          position: relative;
+          transform: translateX(10px);
+          opacity: 0.2;
+          transition: all 0.1s ease-in;
+        }
+
+        &::before,
+        &::after {
+          content: "";
+          position: absolute;
+          width: 14px;
+          height: 4px;
+          top: 50%;
+          left: -24px;
+          background-color: #b7154088;
+          transition: all 0.2s;
+        }
+
+        &::before {
+          transform: translateY(-50%) rotate(45deg);
+        }
+        &::after {
+          transform: translateY(-50%) rotate(-45deg);
+        }
+      }
+      &:not(:last-child) {
+        margin-bottom: 8px;
+      }
+
+      input {
+        display: none;
+
+        &:checked {
+          + span {
+            color: #111;
+            b {
+              transform: translateX(0px);
+              opacity: 1;
+            }
+
+            &::before,
+            &::after {
+              background-color: #119c00;
+            }
+
+            &::before {
+              width: 8px;
+            }
+            &::after {
+              left: -20px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.BoxCheck {
+  position: relative;
+
+  padding: 20px;
+  padding-left: 50px;
+  color: #acacac;
+
+  fieldset {
+    text-align: left;
+
+    label {
+      position: relative;
+      display: block;
+
+      span {
+        cursor: pointer;
+        &::before,
+        &::after {
+          content: "";
+          position: absolute;
+          top: 50%;
+          box-sizing: border-box;
+        }
+
+        &::before {
+          left: -34px;
+          width: 18px;
+          height: 18px;
+          border: 2px solid #f0f0f0;
+          background-color: #f0f0f0;
+          transform: translateY(-50%);
+        }
+        &::after {
+          display: none;
+          left: -30px;
+          transform: translateY(-70%) rotate(-45deg);
+          width: 10px;
+          height: 6px;
+          border-left: 3px solid transparent;
+          border-bottom: 3px solid transparent;
+          border-color: #f0f0f0;
+        }
+      }
+      &:not(:last-child) {
+        margin-bottom: 8px;
+      }
+
+      input {
+        display: none;
+
+        &:checked {
+          + span {
+            color: #111;
+
+            &::before {
+              border: 2px solid #119c00;
+              background-color: #119c00;
+            }
+            &::after {
+              display: block;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.zaranara {
+  @include mediaSize;
+  position: relative;
+  background-color: white;
+  height: 40px;
+  line-height: 40px;
+  transition: color 0s;
+
+  &:hover {
+    color: #ffb8b8;
+    transition: color 0s 0.5s;
+
+    &::before,
+    &::after {
+      width: calc(100% + 20px);
+      height: calc(100% + 20px);
+      border-color: #ffb8b8;
+      transition: width 0.5s, height 0.5s, border-color 0s 0.5s;
+
+      @media screen and (max-width: 900px) {
+        width: calc(100% + 10px);
+        height: calc(100% + 10px);
+      }
+    }
+  }
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    box-sizing: border-box;
+    transition: width 0.5s, height 0.5s, border-color 0s;
+
+    @media screen and (max-width: 900px) {
+      width: 5px;
+      height: 5px;
+    }
+  }
+
+  &::before {
+    top: -10px;
+    left: -10px;
+    border-top: 2px solid #111;
+    border-left: 2px solid #111;
+
+    @media screen and (max-width: 900px) {
+      top: -5px;
+      left: -5px;
+    }
+  }
+  &::after {
+    bottom: -10px;
+    right: -10px;
+    border-bottom: 2px solid #111;
+    border-right: 2px solid #111;
+
+    @media screen and (max-width: 900px) {
+      bottom: -5px;
+      right: -5px;
+    }
+  }
 }
 
 .Gathering {
@@ -334,6 +1700,9 @@ button {
 
   padding: 20px;
   padding-left: 50px;
+  @media screen and (max-width: 900px) {
+    padding-left: 44px;
+  }
   border: 1px solid #dfdfdf;
 
   fieldset {
@@ -600,11 +1969,13 @@ button {
   position: relative;
   transform-style: preserve-3d;
   transition: transform 0.5s;
+  perspective: 2500px;
+  transform: translate(-50%, -50%) rotateX(0deg);
 
   &:hover {
-    transform: translate(-50%, -100%) rotateX(-90deg);
+    transform: translate(-50%, -100%) rotateX(90deg);
     .icon {
-      transform: rotateX(90deg);
+      transform: rotateX(270deg);
 
       i:active {
         color: white;
@@ -634,7 +2005,7 @@ button {
     width: 100%;
     height: 100%;
     align-items: center;
-    transform: rotateX(90deg);
+    transform: rotateX(-90deg);
     transform-style: preserve-3d;
     transform-origin: center top;
 

@@ -9,11 +9,13 @@ import { setText } from "./setText.js";
 export default function Buttons({ text }) {
   useEffect(() => {
     createElem(text);
-    console.log(btnContainer.length);
+    console.log(btnContainer);
   }, []);
 
   useEffect(() => {
     setText(text);
+    document.querySelector(".Jiggle").dataset.jiggle = text
+    
   }, [text]);
 
   return (
@@ -40,8 +42,7 @@ export default function Buttons({ text }) {
             <InfoArea>
               <Type>
                 {item.modal ? `${item.modal}&` : ""}
-                {item.duration ? `${item.duration} ` : ""}
-                {item.type} | {item.skill}
+                {item.type}{item.duration ? `&${item.duration} ` : ""} | {item.skill}
               </Type>
               <Name>{item.name}</Name>
             </InfoArea>
@@ -55,7 +56,7 @@ export default function Buttons({ text }) {
 
 const Container = styled.section`
   display: grid;
-  grid-template-rows: repeat(${Math.floor(btnContainer.length / 3)}, 300px);
+  grid-template-rows: repeat(${Math.floor(btnContainer.length / 4)}, 300px);
   grid-template-columns: repeat(4, 1fr);
   width: 100%;
   max-width: 1920px;
@@ -83,6 +84,7 @@ const ButtonArea = styled.div`
   position: relative;
   width: 100%;
   height: 200px;
+  overflow:hidden;
 
   @media screen and (max-width: 900px) {
     height: 190px;

@@ -145,10 +145,11 @@ export const createElem = (text) => {
     document.querySelector(".ABSlide .right").style.color = `#3c4086`;
   });
 
-  setInput(".Checklist", text);
-  setInput(".BubbleCheck", text);
-  setInput(".IndicatingArrow", text);
-  setInput(".FollowingCursor", text);
+  setInputRadio(".Checklist", text);
+  setInputRadio(".BubbleCheck", text);
+  setInputRadio(".IndicatingArrow", text);
+  setInputRadio(".FollowingCursor", text);
+  setInputRadio(".BoxCheck", text);
 
   document.querySelector(".FollowingCursor .text1").addEventListener("click",()=>{
     document.querySelector(".FollowingCursor").classList.remove("activeDown")
@@ -170,29 +171,53 @@ export const createElem = (text) => {
   document.querySelector(".FollowingCursor .text2").addEventListener("pointerleave",()=>{
     document.querySelector(".FollowingCursor").classList.remove("moveDown")
   })
-
-  ce(
-    ".TodoList",
-    `<fieldset>
-      <label class="todoList-item">
-        <input type="checkbox" name="todo_1" value="1" class="todoList-cb" checked>
-        <span class="todoList-desc text">${text}</span>
-      </label>
-      <label class="todoList-item">
-        <input type="checkbox" name="todo_2" value="1" class="todoList-cb">
-        <span class="todoList-desc">Eat food</span>
-      </label>
-      <label class="todoList-item">
-        <input type="checkbox" name="todo_3" value="1" class="todoList-cb">
-        <span class="todoList-desc">Study Css</span>
-      </label>
-    </fieldset>`
-  );
-  
+  setMutliCheck(".TodoList",text,"Eat food","Study CSS")
   clickActive(".RollingDia");
   clickActive(".BGChangeButton");
   clickActive(".Gathering");
 
+  setMutliCheck(".BoxCheck",text,"Yes","No")
+  setMutliCheck(".CheckToX",text,"No","So so")
+
+  ce(".SwitchCircle",`<span class="text">${text}</span><div><span class="circle"></span></div>`)
+  clickActive(".SwitchCircle");
+
+  clickActive(".MoveNamecard");
+  clickActive(".PopNamecard");
+  clickActive(".FalldownNamecard");
+  clickActive(".Shield");
+
+
+  let longshadow = ``
+  for(let longshadows = 0;longshadows < 200; longshadows++){
+    longshadow += (longshadow ? ",":"") + `${longshadows + 1}px ${longshadows + 1}px 0 #2c2c54`
+  }
+  document.querySelector(".LongShadow").style.boxShadow = longshadow
+
+  setBorder(".ShadowParticle", text);
+
+  clickActive(".Machine");
+
+  
+  ce(".ExpendingChecker", `<div><ul><li class="ExpendingChecker1 text">${text}</li><li class="ExpendingChecker2">Another</li></ul><div class="ball"></div></div>`)
+  document.querySelector(".ExpendingChecker").classList.add("act1")
+  document.querySelector(".ExpendingChecker .ExpendingChecker1").addEventListener("click",()=>{
+    document.querySelector(".ExpendingChecker").classList.remove("act2")
+    document.querySelector(".ExpendingChecker").classList.add("act1")
+  })
+  document.querySelector(".ExpendingChecker .ExpendingChecker2").addEventListener("click",()=>{
+    document.querySelector(".ExpendingChecker").classList.remove("act1")
+    document.querySelector(".ExpendingChecker").classList.add("act2")
+  })
+
+  
+  ce(".FourBalls",`<div><span class="ball ball1"></span><span class="ball ball2"></span><span class="ball ball3"></span><span class="ball ball4"></span></div><span class="text">${text}</span>`)
+  clickActive(".FourBalls");
+  
+  ce(".LoadingBalls",`<div><span class="ball ball1"></span><span class="ball ball2"></span><span class="ball ball3"></span></div><span class="text">${text}</span>`)
+  clickActive(".LoadingBalls");
+  
+  // clickActive(".Raindrop");  
 };/* end */
 
 const ce = (target, contents) =>
@@ -220,8 +245,28 @@ const clickActive = (target) => {
   });
 };
 
-const setInput = (target, text) => {
+const setInputRadio = (target, text) => {
   document.querySelector(
     target
   ).innerHTML = `<input type="radio" name="${target}1" id="${target}1_1" checked><label class="text text1" for="${target}1_1">${text}</label><input type="radio" name="${target}1" id="${target}1_2"><label class="text text2" for="${target}1_2">No</label>`;
+};
+
+
+const setMutliCheck = (target, text,text2,text3) => {
+  document.querySelector(
+    target
+  ).innerHTML = `<fieldset>
+  <label class="${target}-item">
+    <input type="checkbox" name="todo_1" value="1" class="${target}-cb" checked>
+    <span class="${target}-desc"><b class="text">${text}</b></span>
+  </label>
+  <label class="${target}-item">
+    <input type="checkbox" name="todo_2" value="1" class="${target}-cb">
+    <span class="${target}-desc"><b>${text2}</b></span>
+  </label>
+  <label class="${target}-item">
+    <input type="checkbox" name="todo_3" value="1" class="${target}-cb">
+    <span class="${target}-desc"><b>${text3}</b></span>
+  </label>
+</fieldset>`;
 };

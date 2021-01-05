@@ -1,36 +1,44 @@
 export const setText = (text) => {
-  innerText(".CircleArrow .text", text);
-  innerText(".Layered .text", text);
-  innerText(".WaveBrick span", text);
-  innerText(".Ripple span", text);
-  innerText(".VerticalBrick span", text);
-  innerText(".PoppingCircle .text", text);
-  innerText(".NuneTine span", text);
-  innerText(".UpdownUpdown span", text);
-  innerText(".Overlap span", text);
-  innerText(".UpdownUpdown span", text);
-  innerText(".Overlap span", text);
-  innerText(".SpinningBorder .text", text);
-  innerText(".Trees .text", text);
-  innerText(".Trees .text", text);
-  innerText(".Bubble .text", text);
-  innerText(".DetectClick .text", text);
-  innerText(".DetectEnter .text", text);
-  innerText(".AddAndDelete .text", text);
-  innerText(".SlideText .text", text);
-  innerText(".MakeFrame .text", text);
-  innerText(".FlyAway .text", text);
-  innerText(".Net .text", text);
-  innerText(".RollingOX .text", text);
-  innerText(".ABSlide .text", text);
-  innerText(".BubbleCheck .text", text);
-  innerText(".IndicatingArrow .text", text);
-  innerText(".Checklist .text", text);
-  innerText(".StretchWindow span.text", text);
-  innerText(".TodoList span.text", text);
-  innerText(".FollowingCursor .text", text);
+  innerTextArray.map((item) => document.querySelector(item).innerHTML = text)
 };
 
-const innerText = (target, text) => {
-  document.querySelector(target).innerHTML = text;
-};
+const innerTextArray = [
+  ".CircleArrow .text",
+".Layered .text",
+".WaveBrick span",
+".Ripple span",
+".VerticalBrick span",
+".PoppingCircle .text",
+".NuneTine span",
+".UpdownUpdown span",
+".Overlap span",
+".UpdownUpdown span",
+".Overlap span",
+".SpinningBorder .text",
+".Trees .text",
+".Trees .text",
+".Bubble .text",
+".DetectClick .text",
+".DetectEnter .text",
+".AddAndDelete .text",
+".SlideText .text",
+".MakeFrame .text",
+".FlyAway .text",
+".Net .text",
+".RollingOX .text",
+".ABSlide .text",
+".BubbleCheck .text",
+".IndicatingArrow .text",
+".Checklist .text",
+".StretchWindow span.text",
+".TodoList .text",
+".FollowingCursor .text",
+".Gathering .text",
+".MakeDistance .text",
+".BoxCheck .text",
+".CheckToX .text",
+".SwitchCircle .text",
+".ShadowParticle .text",
+".ExpendingChecker .text",
+".FourBalls .text",
+]

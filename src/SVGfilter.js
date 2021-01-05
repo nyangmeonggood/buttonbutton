@@ -39,6 +39,32 @@ export default function SVGfilter() {
           </filter>
         </defs>
       </svg>
+      <svg style={{ display: "none" }}>
+        <defs>
+            <filter id="jiggle0">
+                <feTurbulence id="turbulence" baseFrequency="0.02" numOctaves="3" result="noise" seed="0" />
+                <feDisplacementMap id="displacement" in="SourceGraphic" in2="noise" scale="6" />
+            </filter>
+            <filter id="jiggle1">
+                <feTurbulence id="turbulence" baseFrequency="0.02" numOctaves="3" result="noise" seed="1" />
+                <feDisplacementMap in="SourceGraphic" in2="noise" scale="8" />
+            </filter>
+
+            <filter id="jiggle2">
+                <feTurbulence id="turbulence" baseFrequency="0.02" numOctaves="3" result="noise" seed="2" />
+                <feDisplacementMap in="SourceGraphic" in2="noise" scale="6" />
+            </filter>
+            <filter id="jiggle3">
+                <feTurbulence id="turbulence" baseFrequency="0.02" numOctaves="3" result="noise" seed="3" />
+                <feDisplacementMap in="SourceGraphic" in2="noise" scale="8" />
+            </filter>
+
+            <filter id="jiggle4">
+                <feTurbulence id="turbulence" baseFrequency="0.02" numOctaves="3" result="noise" seed="4" />
+                <feDisplacementMap in="SourceGraphic" in2="noise" scale="6" />
+            </filter>
+        </defs>
+    </svg>
     </>
   );
 }
