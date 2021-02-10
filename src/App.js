@@ -8,7 +8,7 @@ import { btnContainer } from "./btnContainer";
 import Buttons from "./Buttons";
 
 function App() {
-  const [buttonText, setButtonText] = useState("Write Here!");
+  const [buttonText, setButtonText] = useState("Type Here!");
   const [isLoaded, setIsLoaded] = useState(false);
   const inputRef = useRef(null);
 
@@ -26,10 +26,6 @@ function App() {
   const randomMainTitle = btnContainer.filter((item) => item.title !== false);
   const randomClass =
     randomMainTitle[Math.floor(Math.random() * randomMainTitle.length)];
-
-  useEffect(() => {
-    if (isLoaded) window.addEventListener("scroll", scrollEvent);
-  });
 
   return (
     <>
@@ -63,23 +59,15 @@ function App() {
           onFocus={empty}
         ></input>
       )}
-      {isLoaded && <Buttons text={buttonText} />}
+      {isLoaded && <Buttons text={buttonText} isLoaded={isLoaded} />}
     </>
   );
 }
 
-const scrollEvent = () => {
-  if (window.scrollY > 100) {
-    document.querySelector("#root").classList.add("fixed");
-  } else {
-    document.querySelector("#root").classList.remove("fixed");
-  }
-};
-
 const Header = styled.header`
   position: relative;
   width: 100%;
-  margin-top: 100px;
+  margin-top: 30px;
   padding-top: 260px;
   height: 120px;
   transition: height 1s;

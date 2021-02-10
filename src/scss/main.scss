@@ -10,6 +10,10 @@ html,
 body {
   font-family: "paybooc-Medium", "Raleway", sans-serif;
   font-weight: bold;
+
+  * {
+    user-select: none;
+  }
 }
 
 .textInput {
@@ -22,4 +26,96 @@ body {
   outline: none;
   text-align: center;
   box-sizing: border-box;
+}
+
+.filter {
+  position: relative;
+  width: calc(100% - 40px);
+  height: 40px;
+  margin: 0 auto;
+
+  &.active {
+    .ham {
+      span {
+        &:nth-of-type(1) {
+          width: 90%;
+        }
+        &:nth-of-type(2) {
+          width: 70%;
+        }
+        &:nth-of-type(3) {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  .ham {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    width: 20px;
+    height: 20px;
+    transform: translateY(-50%);
+    cursor: pointer;
+
+    span {
+      position: absolute;
+      top: 50%;
+      right: 0;
+      transition: width 0.2s;
+      width: 100%;
+      height: 2px;
+      background-color: #111;
+
+      &:nth-of-type(1) {
+        transform: translateY(-8px);
+      }
+      &:nth-of-type(2) {
+        transform: translateY(-50%);
+      }
+      &:nth-of-type(3) {
+        transform: translateY(7px);
+      }
+    }
+  }
+
+  ul {
+    position: absolute;
+    right: 0;
+    bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 24px;
+    border-radius: 100px;
+    background-color: #f0f0f0;
+    box-sizing: border-box;
+
+    li {
+      cursor: pointer;
+      color: #d8d8d8;
+      &:hover,
+      &.active {
+        color: #111;
+      }
+      &:active {
+        transform: scale(0.95);
+      }
+      &:not(:last-child) {
+        margin-right: 10px;
+      }
+    }
+  }
+}
+
+#root {
+  .textInputScroll {
+    display: none;
+  }
+  &.fixed {
+    display: block;
+    position: fixed;
+    bottom: 10px;
+  }
 }

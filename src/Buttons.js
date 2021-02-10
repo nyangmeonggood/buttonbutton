@@ -1,56 +1,127 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
+import cn from "classnames";
 import { btnContainer } from "./btnContainer.js";
 import { createElem } from "./createElem.js";
 import SVGfilter from "./SVGfilter.js";
-import "./scss/style.scss";
 import { setText } from "./setText.js";
+import "./scss/style.scss";
 
 export default function Buttons({ text }) {
+  const [filter, setFilter] = useState("");
+  const containerRef = useRef(null),
+    filterRef = useRef(null);
+
+  const setFilterAll = () => {
+    containerRef.current.classList.remove("setFilter");
+    setFilter("");
+  };
+
+  const setFilterHover = () => {
+    containerRef.current.classList.add("setFilter");
+    setFilter("Hover");
+  };
+
+  const setFilterClick = () => {
+    containerRef.current.classList.add("setFilter");
+    setFilter("Click");
+  };
+
+  const setFilterMotion = () => {
+    containerRef.current.classList.add("setFilter");
+    setFilter("Motion");
+  };
+
+  const setFilterSelect = () => {
+    containerRef.current.classList.add("setFilter");
+    setFilter("Select");
+  };
+
+  const scrollEvent = () => {
+    if (window.scrollY > 300) {
+      document.querySelector("#root").classList.add("fixed");
+    } else {
+      document.querySelector("#root").classList.remove("fixed");
+    }
+  };
+
   useEffect(() => {
     createElem(text);
-    console.log(btnContainer);
+
+    Object.values(filterRef.current.children).map((item) => {
+      item.addEventListener("click", () => {
+        Object.values(filterRef.current.children).map((item) => {
+          item.classList.remove("active");
+        });
+        item.classList.add("active");
+      });
+    });
   }, []);
 
   useEffect(() => {
     setText(text);
-    document.querySelector(".Jiggle").dataset.jiggle = text
-    
+    document.querySelector(".Jiggle").dataset.jiggle = text;
   }, [text]);
 
   return (
-    <Container>
-      {btnContainer.map((item) => {
-        return (
-          <Box key={item.name.replace(/ /gi, "")}>
-            <ButtonArea>
-              {item.text ? (
-                <Button className={item.name.replace(/ /gi, "")}>{text}</Button>
-              ) : (
-                <>
+    <>
+      <div className="filter">
+        {/* <div className="ham" ref={filterRef}>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div> */}
+        <ul ref={filterRef}>
+          <li onClick={setFilterAll} className="active">
+            All
+          </li>
+          <li onClick={setFilterHover}>Hover</li>
+          <li onClick={setFilterClick}>Click</li>
+          <li onClick={setFilterMotion}>Motion</li>
+          <li onClick={setFilterSelect}>Select</li>
+        </ul>
+      </div>
+      <Container ref={containerRef}>
+        {btnContainer.map((item, index) => {
+          return (
+            <Box
+              key={item.name.replace(/ /gi, "")}
+              className={cn(item.type === filter ? "isFiltered" : "")}
+            >
+              <ButtonArea>
+                {item.text ? (
                   <Button className={item.name.replace(/ /gi, "")}>
-                    {!item.posCenter && (
-                      <>
-                        <span></span>
-                      </>
-                    )}
+                    {text}
                   </Button>
-                  {item.posCenter && <TextSpan>{text}</TextSpan>}
-                </>
-              )}
-            </ButtonArea>
-            <InfoArea>
-              <Type>
-                {item.modal ? `${item.modal}&` : ""}
-                {item.type}{item.duration ? `&${item.duration} ` : ""} | {item.skill}
-              </Type>
-              <Name>{item.name}</Name>
-            </InfoArea>
-          </Box>
-        );
-      })}
-      <SVGfilter />
-    </Container>
+                ) : (
+                  <>
+                    <Button className={item.name.replace(/ /gi, "")}>
+                      {!item.posCenter && (
+                        <>
+                          <span></span>
+                        </>
+                      )}
+                    </Button>
+                    {item.posCenter && <TextSpan>{text}</TextSpan>}
+                  </>
+                )}
+              </ButtonArea>
+              <InfoArea>
+                <Type>
+                  {item.modal ? `${item.modal}&` : ""}
+                  {item.type}
+                  {item.duration ? `&${item.duration} ` : ""} | {item.skill}
+                </Type>
+                <Name>{`${index < 9 ? "0" + (index + 1) : index + 1}. ${
+                  item.name
+                }`}</Name>
+              </InfoArea>
+            </Box>
+          );
+        })}
+        <SVGfilter />
+      </Container>
+    </>
   );
 }
 
@@ -67,6 +138,12 @@ const Container = styled.section`
   @media screen and (max-width: 900px) {
     grid-template-columns: repeat(2, 1fr);
   }
+
+  &.setFilter {
+    > div {
+      display: none;
+    }
+  }
 `;
 
 const Box = styled.div`
@@ -78,13 +155,17 @@ const Box = styled.div`
   @media screen and (max-width: 900px) {
     padding-bottom: 4px;
   }
+
+  &.isFiltered {
+    display: block !important;
+  }
 `;
 
 const ButtonArea = styled.div`
   position: relative;
   width: 100%;
   height: 200px;
-  overflow:hidden;
+  overflow: hidden;
 
   @media screen and (max-width: 900px) {
     height: 190px;

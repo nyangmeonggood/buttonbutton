@@ -17,7 +17,7 @@ export const btnContainer = [
   },
   {
     name: "Highlight Pen",
-    type: "Hover", 
+    type: "Hover",
     skill: "CSS",
     text: true,
     posCenter: false,
@@ -262,7 +262,7 @@ export const btnContainer = [
   {
     name: "Puding",
     duration: "Hold",
-    type: "click",
+    type: "Click",
     skill: "CSS",
     text: true,
     posCenter: false,
@@ -672,7 +672,7 @@ export const btnContainer = [
     skill: "CSS",
     text: true,
     posCenter: false,
-    title: true,
+    title: false,
   },
   {
     name: "Shield",
@@ -739,7 +739,7 @@ export const btnContainer = [
     skill: "CSS",
     text: true,
     posCenter: false,
-    title: true,
+    title: false,
   },
   {
     name: "Move Gradation",

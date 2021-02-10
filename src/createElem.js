@@ -151,35 +151,50 @@ export const createElem = (text) => {
   setInputRadio(".FollowingCursor", text);
   setInputRadio(".BoxCheck", text);
 
-  document.querySelector(".FollowingCursor .text1").addEventListener("click",()=>{
-    document.querySelector(".FollowingCursor").classList.remove("activeDown")
-    document.querySelector(".FollowingCursor").classList.add("activeUp")
-  })
-  document.querySelector(".FollowingCursor .text2").addEventListener("click",()=>{
-    document.querySelector(".FollowingCursor").classList.remove("activeUp")
-    document.querySelector(".FollowingCursor").classList.add("activeDown")
-  })
-  document.querySelector(".FollowingCursor .text1").addEventListener("pointerenter",()=>{
-    document.querySelector(".FollowingCursor").classList.add("moveUp")
-  })
-  document.querySelector(".FollowingCursor .text1").addEventListener("pointerleave",()=>{
-    document.querySelector(".FollowingCursor").classList.remove("moveUp")
-  })
-  document.querySelector(".FollowingCursor .text2").addEventListener("pointerenter",()=>{
-    document.querySelector(".FollowingCursor").classList.add("moveDown")
-  })
-  document.querySelector(".FollowingCursor .text2").addEventListener("pointerleave",()=>{
-    document.querySelector(".FollowingCursor").classList.remove("moveDown")
-  })
-  setMutliCheck(".TodoList",text,"Eat food","Study CSS")
+  document
+    .querySelector(".FollowingCursor .text1")
+    .addEventListener("click", () => {
+      document.querySelector(".FollowingCursor").classList.remove("activeDown");
+      document.querySelector(".FollowingCursor").classList.add("activeUp");
+    });
+  document
+    .querySelector(".FollowingCursor .text2")
+    .addEventListener("click", () => {
+      document.querySelector(".FollowingCursor").classList.remove("activeUp");
+      document.querySelector(".FollowingCursor").classList.add("activeDown");
+    });
+  document
+    .querySelector(".FollowingCursor .text1")
+    .addEventListener("pointerenter", () => {
+      document.querySelector(".FollowingCursor").classList.add("moveUp");
+    });
+  document
+    .querySelector(".FollowingCursor .text1")
+    .addEventListener("pointerleave", () => {
+      document.querySelector(".FollowingCursor").classList.remove("moveUp");
+    });
+  document
+    .querySelector(".FollowingCursor .text2")
+    .addEventListener("pointerenter", () => {
+      document.querySelector(".FollowingCursor").classList.add("moveDown");
+    });
+  document
+    .querySelector(".FollowingCursor .text2")
+    .addEventListener("pointerleave", () => {
+      document.querySelector(".FollowingCursor").classList.remove("moveDown");
+    });
+  setMutliCheck(".TodoList", text, "Eat food", "Study CSS");
   clickActive(".RollingDia");
   clickActive(".BGChangeButton");
   clickActive(".Gathering");
 
-  setMutliCheck(".BoxCheck",text,"Yes","No")
-  setMutliCheck(".CheckToX",text,"No","So so")
+  setMutliCheck(".BoxCheck", text, "Yes", "No");
+  setMutliCheck(".CheckToX", text, "No", "So so");
 
-  ce(".SwitchCircle",`<span class="text">${text}</span><div><span class="circle"></span></div>`)
+  ce(
+    ".SwitchCircle",
+    `<span class="text">${text}</span><div><span class="circle"></span></div>`
+  );
   clickActive(".SwitchCircle");
 
   clickActive(".MoveNamecard");
@@ -187,38 +202,50 @@ export const createElem = (text) => {
   clickActive(".FalldownNamecard");
   clickActive(".Shield");
 
-
-  let longshadow = ``
-  for(let longshadows = 0;longshadows < 200; longshadows++){
-    longshadow += (longshadow ? ",":"") + `${longshadows + 1}px ${longshadows + 1}px 0 #2c2c54`
+  let longshadow = ``;
+  for (let longshadows = 0; longshadows < 200; longshadows++) {
+    longshadow +=
+      (longshadow ? "," : "") +
+      `${longshadows + 1}px ${longshadows + 1}px 0 #2c2c54`;
   }
-  document.querySelector(".LongShadow").style.boxShadow = longshadow
+  document.querySelector(".LongShadow").style.boxShadow = longshadow;
 
   setBorder(".ShadowParticle", text);
 
   clickActive(".Machine");
 
-  
-  ce(".ExpendingChecker", `<div><ul><li class="ExpendingChecker1 text">${text}</li><li class="ExpendingChecker2">Another</li></ul><div class="ball"></div></div>`)
-  document.querySelector(".ExpendingChecker").classList.add("act1")
-  document.querySelector(".ExpendingChecker .ExpendingChecker1").addEventListener("click",()=>{
-    document.querySelector(".ExpendingChecker").classList.remove("act2")
-    document.querySelector(".ExpendingChecker").classList.add("act1")
-  })
-  document.querySelector(".ExpendingChecker .ExpendingChecker2").addEventListener("click",()=>{
-    document.querySelector(".ExpendingChecker").classList.remove("act1")
-    document.querySelector(".ExpendingChecker").classList.add("act2")
-  })
+  ce(
+    ".ExpendingChecker",
+    `<div><ul><li class="ExpendingChecker1 text">${text}</li><li class="ExpendingChecker2">Another</li></ul><div class="ball"></div></div>`
+  );
+  document.querySelector(".ExpendingChecker").classList.add("act1");
+  document
+    .querySelector(".ExpendingChecker .ExpendingChecker1")
+    .addEventListener("click", () => {
+      document.querySelector(".ExpendingChecker").classList.remove("act2");
+      document.querySelector(".ExpendingChecker").classList.add("act1");
+    });
+  document
+    .querySelector(".ExpendingChecker .ExpendingChecker2")
+    .addEventListener("click", () => {
+      document.querySelector(".ExpendingChecker").classList.remove("act1");
+      document.querySelector(".ExpendingChecker").classList.add("act2");
+    });
 
-  
-  ce(".FourBalls",`<div><span class="ball ball1"></span><span class="ball ball2"></span><span class="ball ball3"></span><span class="ball ball4"></span></div><span class="text">${text}</span>`)
+  ce(
+    ".FourBalls",
+    `<div><span class="ball ball1"></span><span class="ball ball2"></span><span class="ball ball3"></span><span class="ball ball4"></span></div><span class="text">${text}</span>`
+  );
   clickActive(".FourBalls");
-  
-  ce(".LoadingBalls",`<div><span class="ball ball1"></span><span class="ball ball2"></span><span class="ball ball3"></span></div><span class="text">${text}</span>`)
+
+  ce(
+    ".LoadingBalls",
+    `<div><span class="ball ball1"></span><span class="ball ball2"></span><span class="ball ball3"></span></div><span class="text">${text}</span>`
+  );
   clickActive(".LoadingBalls");
-  
-  // clickActive(".Raindrop");  
-};/* end */
+
+  // clickActive(".Raindrop");
+}; /* end */
 
 const ce = (target, contents) =>
   (document.querySelector(target).innerHTML = contents);
@@ -251,11 +278,8 @@ const setInputRadio = (target, text) => {
   ).innerHTML = `<input type="radio" name="${target}1" id="${target}1_1" checked><label class="text text1" for="${target}1_1">${text}</label><input type="radio" name="${target}1" id="${target}1_2"><label class="text text2" for="${target}1_2">No</label>`;
 };
 
-
-const setMutliCheck = (target, text,text2,text3) => {
-  document.querySelector(
-    target
-  ).innerHTML = `<fieldset>
+const setMutliCheck = (target, text, text2, text3) => {
+  document.querySelector(target).innerHTML = `<fieldset>
   <label class="${target}-item">
     <input type="checkbox" name="todo_1" value="1" class="${target}-cb" checked>
     <span class="${target}-desc"><b class="text">${text}</b></span>
