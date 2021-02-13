@@ -614,7 +614,7 @@ export const btnContainer = [
     skill: "CSS",
     text: true,
     posCenter: false,
-    title: true,
+    title: false,
   },
   {
     name: "Pop Namecard",
@@ -622,7 +622,7 @@ export const btnContainer = [
     skill: "CSS",
     text: true,
     posCenter: false,
-    title: true,
+    title: false,
   },
   {
     name: "Falldown Namecard",
@@ -630,7 +630,7 @@ export const btnContainer = [
     skill: "CSS",
     text: true,
     posCenter: false,
-    title: true,
+    title: false,
   },
   {
     name: "Rumbling Box",
@@ -639,7 +639,7 @@ export const btnContainer = [
     skill: "CSS",
     text: true,
     posCenter: false,
-    title: true,
+    title: false,
   },
   {
     name: "Reverse Card",
@@ -647,7 +647,7 @@ export const btnContainer = [
     skill: "CSS",
     text: true,
     posCenter: false,
-    title: true,
+    title: false,
   },
   {
     name: "CoverUp",
@@ -656,7 +656,7 @@ export const btnContainer = [
     skill: "CSS",
     text: true,
     posCenter: false,
-    title: true,
+    title: false,
   },
   {
     name: "Vibration",
